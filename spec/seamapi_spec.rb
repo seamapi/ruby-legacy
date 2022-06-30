@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
-RSpec.describe Seamapi do
+RSpec.describe Seam do
   it "has a version number" do
-    expect(Seamapi::VERSION).not_to be nil
+    expect(Seam::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "can poll for health" do
+    seam = Seam::SeamClient.new
+    expect(seam.health).not_to be nil
+  end
+
+  it "can list devices" do
+    seam = Seam::SeamClient.new
+    expect(seam.devices.list).not_to be nil
   end
 end

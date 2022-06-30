@@ -4,7 +4,7 @@ require_relative "lib/seamapi/version"
 
 Gem::Specification.new do |spec|
   spec.name = "seamapi"
-  spec.version = Seamapi::VERSION
+  spec.version = Seam::VERSION
   spec.authors = ["Abimael Martell"]
   spec.email = ["abi@getseam.com"]
 
