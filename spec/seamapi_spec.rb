@@ -5,13 +5,24 @@ RSpec.describe Seam do
     expect(Seam::VERSION).not_to be nil
   end
 
-  it "can poll for health" do
+  describe "Seam Client Operations" do
     seam = Seam::SeamClient.new
-    expect(seam.health).not_to be nil
-  end
 
-  it "can list devices" do
-    seam = Seam::SeamClient.new
-    expect(seam.devices.list).not_to be nil
+    it "can poll for health" do
+      expect(seam.health).not_to be nil
+    end
+
+    it "can convert hashes to instances" do
+      puts Seam::convert_hash_to_instance(seam.workspaces.get)
+    end
+
+    it "can get the current workspace" do
+      ws = seam.workspaces.get
+      expect(ws).not_to be nil
+      puts ws["workspace"]
+    end
+    # it "can list devices" do
+    #   expect(seam.devices.list).not_to be nil
+    # end
   end
 end

@@ -3,6 +3,8 @@
 require "seamapi/version"
 require "seamapi/health"
 require "seamapi/devices"
+require "seamapi/workspaces"
+require "seamapi/objects"
 
 module Seam
   class Error < StandardError; end
@@ -15,7 +17,6 @@ module Seam
                      .headers("User-Agent" => "Ruby SDK v#{Seam::VERSION} (https://github.com/seamapi/ruby)")
                      .accept(:json)
                      .auth("Bearer seam_sandykey_0000000000000000000sand")
-      puts "Hello World"
     end
   end
 end
