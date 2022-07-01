@@ -5,9 +5,13 @@ RSpec.describe Seamapi do
     expect(Seamapi::VERSION).not_to be nil
   end
 
-  # describe "#health" do
-  #   it "returns a hash" do
-  #     expect(Seamapi.health).to be_a(Hash)
-  #   end
-  # end
+  describe "#health" do
+    before do
+      stub_seam_request(:get, "health", { ok: true })
+    end
+
+    it "returns a hash" do
+      expect(Seamapi.health).to be_a(Hash)
+    end
+  end
 end
