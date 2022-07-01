@@ -5,7 +5,9 @@ RSpec.describe Seamapi do
     expect(Seamapi::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
-  end
+  # describe "#health" do
+  #   it "returns a hash" do
+  #     expect(Seamapi.health).to be_a(Hash)
+  #   end
+  # end
 end
