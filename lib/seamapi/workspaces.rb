@@ -12,7 +12,7 @@ module Seam
     end
   
     def get
-      JSON.parse(@http_client.get("http://localhost:3000/workspaces/get"))
+      Seam::convert_hash_to_instance(JSON.parse(@http_client.get("http://localhost:3000/workspaces/get")))
     end
   end
 

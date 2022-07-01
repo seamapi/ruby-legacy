@@ -3,9 +3,7 @@ require "http"
 module Seam
   class SeamClient
     def health
-      res = @http_client.get("http://localhost:3000/health")
-      puts res.body
-      res
+      @http_client.get("http://localhost:3000/health")
     end
   end
 end

@@ -13,7 +13,7 @@ RSpec.describe Seam do
     end
 
     it "can convert hashes to instances" do
-      puts Seam::convert_hash_to_instance(seam.workspaces.get)
+      puts seam.workspaces.get
     end
 
     it "can get the current workspace" do

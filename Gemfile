@@ -14,3 +14,5 @@ gem "minitest", "~> 5.16"
 gem "faraday", "~> 2.3"
 
 gem "http", "~> 5.1"
+
+gem "pry", "~> 0.14.1"
