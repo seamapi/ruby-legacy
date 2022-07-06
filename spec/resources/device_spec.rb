@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Seamapi::Device do
+RSpec.describe Seam::Device do
   describe ".list" do
     let(:device_hash) { { device_id: "123" } }
 
@@ -12,7 +12,7 @@ RSpec.describe Seamapi::Device do
 
     it "returns a list of Devices" do
       expect(devices).to be_a(Array)
-      expect(devices.first).to be_a(Seamapi::Device)
+      expect(devices.first).to be_a(Seam::Device)
       expect(devices.first.device_id).to be_a(String)
     end
   end
@@ -31,10 +31,10 @@ RSpec.describe Seamapi::Device do
         stub_seam_request(:post, "locks/lock_door", { action_attempt: action_attempt_hash })
       end
 
-      let(:action_attempt) { Seamapi::Device.lock("123") }
+      let(:action_attempt) { Seam::Device.lock("123") }
 
       it "returns an ActionAttempt" do
-        expect(action_attempt).to be_a(Seamapi::ActionAttempt)
+        expect(action_attempt).to be_a(Seam::ActionAttempt)
         expect(action_attempt.action_attempt_id).to be_a(String)
         expect(action_attempt.action_attempt_id).to eq(action_attempt_id)
       end
@@ -45,10 +45,10 @@ RSpec.describe Seamapi::Device do
         stub_seam_request(:post, "locks/unlock_door", { action_attempt: action_attempt_hash })
       end
 
-      let(:action_attempt) { Seamapi::Device.unlock("123") }
+      let(:action_attempt) { Seam::Device.unlock("123") }
 
       it "returns an ActionAttempt" do
-        expect(action_attempt).to be_a(Seamapi::ActionAttempt)
+        expect(action_attempt).to be_a(Seam::ActionAttempt)
         expect(action_attempt.action_attempt_id).to be_a(String)
         expect(action_attempt.action_attempt_id).to eq(action_attempt_id)
       end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Seamapi
+module Seam
   class Workspace < BaseResource
     attr_accessor :workspace_id
   end

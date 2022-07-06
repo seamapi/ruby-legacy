@@ -2,7 +2,7 @@
 
 require "logger"
 
-module Seamapi
+module Seam
   class Logger
     def self.info(message)
       logger = ::Logger.new($stdout)

@@ -2,7 +2,7 @@
 
 require "http"
 
-module Seamapi
+module Seam
   class Request
     attr_reader :base_uri, :api_key
 
@@ -50,7 +50,7 @@ module Seamapi
     end
 
     def user_agent
-      "seamapi-ruby/#{Seamapi::VERSION}"
+      "seam-ruby/#{Seam::VERSION}"
     end
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Seamapi
+module Seam
   class Client
     attr_accessor :api_key, :base_uri
 
@@ -10,11 +10,11 @@ module Seamapi
     end
 
     def locks
-      @locks ||= Seamapi::Clients::Locks.new(self)
+      @locks ||= Seam::Clients::Locks.new(self)
     end
 
     def devices
-      @devices ||= Seamapi::Clients::Devices.new(self)
+      @devices ||= Seam::Clients::Devices.new(self)
     end
   end
 end

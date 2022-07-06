@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Seamapi
+module Seam
   class ActionAttempt < BaseClient
   end
 end

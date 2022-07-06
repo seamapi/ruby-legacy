@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Seamapi
+module Seam
   module Clients
     class BaseClient
       attr_accessor :client
@@ -10,7 +10,7 @@ module Seamapi
       end
 
       def request_seam_object(method, path, config = {})
-        Seamapi::Request.new(
+        Seam::Request.new(
           client.api_key,
           client.base_uri
         ).perform(

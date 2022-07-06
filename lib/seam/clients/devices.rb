@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-module Seamapi
+module Seam
   module Clients
     class Devices < BaseClient
       def list(params = {})
         request_seam_object(
           :get, "devices/list", params: params
         )["devices"].map do |device|
-          Seamapi::Device.new(device)
+          Seam::Device.new(device)
         end
       end
 
