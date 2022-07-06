@@ -12,6 +12,7 @@ module Seam
           params: { access_code_id: access_code_id }
         )
       end
+
       def list(device_id)
         request_seam_object(
           :get,
@@ -21,6 +22,7 @@ module Seam
           params: { device_id: device_id }
         )
       end
+
       def create(device_id: nil, name: nil, code: nil, starts_at: nil, ends_at: nil)
         action_attempt = request_seam_object(
           :post,
@@ -32,6 +34,18 @@ module Seam
         action_attempt.wait_until_finished
         # TODO check if failed
         Seam::AccessCode.new(action_attempt.result["access_code"], @client)
+      end
+
+      def delete(access_code_id)
+        action_attempt = request_seam_object(
+          :delete,
+          "/access_codes/delete",
+          Seam::ActionAttempt,
+          "action_attempt",
+          body: { access_code_id: access_code_id }
+        )
+        action_attempt.wait_until_finished
+        action_attempt
       end
     end
   end
