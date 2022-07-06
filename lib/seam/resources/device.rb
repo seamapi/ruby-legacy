@@ -2,6 +2,6 @@
 
 module Seam
   class Device < BaseResource
-    attr_accessor :device_id
+    attr_accessor :device_id, :device_type, :properties
   end
 end

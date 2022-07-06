@@ -27,5 +27,14 @@ module Seam
         new(data, client)
       end
     end
+
+    def inspect
+      "<#{self.class.name}:#{"0x00%x" % (object_id << 1)}\n" +
+      instance_variables
+        .map { |k| "#{k}".sub("@", "") }
+        .filter { |k| k != "data" and k != "client" and respond_to? k }
+        .map { |k| "  #{k}=#{send(k)}" }
+        .join("\n") + ">"
+    end
   end
 end
