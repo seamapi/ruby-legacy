@@ -30,6 +30,26 @@ module Seam
           body: { device_id: device_id }
         )
       end
+
+      def list(params = {})
+        request_seam_object(
+          :get,
+          "/locks/list",
+          Seam::Device,
+          "devices",
+          params: params
+        )
+      end
+
+      def get(device_id)
+        request_seam_object(
+          :get,
+          "/locks/get",
+          Seam::Device,
+          "device",
+          params: { device_id: device_id }
+        )
+      end
     end
   end
 end
