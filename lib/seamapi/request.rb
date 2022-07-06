@@ -14,27 +14,25 @@ module Seamapi
       end
     end
 
-    def initialize
-      @base_uri = Seamapi.config.base_uri
-      @api_key = Seamapi.config.api_key
+    def initialize(api_key, base_uri)
+      @base_uri = base_uri
+      @api_key = api_key
     end
 
-    def call(method, uri, params = {})
-      Logger.info("Request: #{method} #{uri} #{params}")
+    def perform(method, uri, config = {})
+      Logger.info("Request: #{method} #{uri} #{config}")
 
-      response = HTTP.request(method, build_url(uri), headers: headers, params: params)
+      config[:body] = config[:body].to_json if config[:body]
+
+      response = HTTP.request(
+        method,
+        build_url(uri),
+        { headers: headers }.merge(config)
+      )
 
       return response.parse if response.status.success?
 
       raise Error.new("Api Error #{response.status.code} #{method} #{uri}", response.status.code, response)
-    end
-
-    def self.get(uri, params = {})
-      new.call(:GET, uri, params)
-    end
-
-    def self.post(uri, params = {})
-      new.call(:POST, uri, params)
     end
 
     protected
