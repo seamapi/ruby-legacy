@@ -33,7 +33,7 @@ module Seam
       instance_variables
         .map { |k| "#{k}".sub("@", "") }
         .filter { |k| k != "data" and k != "client" and respond_to? k }
-        .map { |k| "  #{k}=#{send(k)}" }
+        .map { |k| "  #{k}=#{send(k).inspect}" }
         .join("\n") + ">"
     end
   end
