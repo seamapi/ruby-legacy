@@ -38,7 +38,7 @@ module Seam
     protected
 
     def build_url(uri)
-      "#{base_uri}/#{uri}"
+      "#{base_uri}#{uri}"
     end
 
     def headers

@@ -9,6 +9,16 @@ module Seam
       @base_uri = base_uri
     end
 
+    def health
+      response = Seam::Request.new(
+        @api_key,
+        @base_uri
+      ).perform(
+        "GET", "/health", {}
+      )
+      response
+    end
+
     def locks
       @locks ||= Seam::Clients::Locks.new(self)
     end
