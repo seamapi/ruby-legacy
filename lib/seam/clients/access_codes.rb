@@ -38,7 +38,7 @@ module Seam
 
       def delete(access_code_id)
         action_attempt = request_seam_object(
-          :delete,
+          :post,
           "/access_codes/delete",
           Seam::ActionAttempt,
           "action_attempt",
