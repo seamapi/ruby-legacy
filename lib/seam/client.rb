@@ -34,5 +34,17 @@ module Seam
     def access_codes
       @access_codes ||= Seam::Clients::AccessCodes.new(self)
     end
+
+    def connect_webviews
+      @connect_webviews ||= Seam::Clients::ConnectWebviews.new(self)
+    end
+
+    def connected_accounts
+      @connected_accounts ||= Seam::Clients::ConnectedAccounts.new(self)
+    end
+
+    def workspaces
+      @workspaces ||= Seam::Clients::Workspaces.new(self)
+    end
   end
 end

@@ -13,6 +13,7 @@ module Seam
     end
 
     def self.load_from_response(data)
+      puts "data: #{data}"
       if data.is_a?(Array)
         data.map { |d| new(d) }
       else
