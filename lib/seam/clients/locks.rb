@@ -7,10 +7,10 @@ module Seam
       #
       # @param [String] device_id
       # @return [Seam::ActionAttempt]
-      def unlock(device_id)
+      def unlock_door(device_id)
         request_seam_object(
           :post,
-          "/locks/lock_door",
+          "/locks/unlock_door",
           Seam::ActionAttempt,
           "action_attempt",
           body: { device_id: device_id }
@@ -21,10 +21,10 @@ module Seam
       #
       # @param [String] device_id
       # @return [Seam::ActionAttempt]
-      def lock(device_id)
+      def lock_door(device_id)
         request_seam_object(
           :post,
-          "/locks/unlock_door",
+          "/locks/lock_door",
           Seam::ActionAttempt,
           "action_attempt",
           body: { device_id: device_id }

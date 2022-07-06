@@ -19,7 +19,7 @@ module Seam
 
         data = response[inner_object]
 
-        klass.load_from_response(data)
+        klass.load_from_response(data, @client)
       end
     end
   end
