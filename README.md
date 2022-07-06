@@ -20,13 +20,16 @@ Then execute
 
 ## Usage
 
+> To use this sdk, you'll need to generate an API Key on the [Seam Dashboard](https://dashboard.getseam.com)
+
 
 ```ruby
-# Configure Api Key
-Seam.configure do |config|
-  config.api_key = "API_KEY"
-end
+seam = Seam::Client.new("MY_API_KEY")
 
+devices = seam.devices.list
 
-devices = Seamapi::Device.list
+my_door = devices.first
+
+seam.locks.unlock(my_door).wait_until_finished
+
 ```
