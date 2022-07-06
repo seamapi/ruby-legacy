@@ -5,7 +5,7 @@ RSpec.describe Seam do
     expect(Seam::VERSION).not_to be nil
   end
 
-  describe "#health" do
+  xdescribe "#health" do
     before do
       stub_seam_request(:get, "health", { ok: true })
     end

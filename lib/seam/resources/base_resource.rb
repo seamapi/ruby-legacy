@@ -11,5 +11,13 @@ module Seam
         instance_variable_set("@#{key}", value)
       end
     end
+
+    def self.load_from_response(data)
+      if data.is_a?(Array)
+        data.map { |d| new(d) }
+      else
+        new(data)
+      end
+    end
   end
 end

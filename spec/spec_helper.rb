@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "seamapi"
+require "seam"
 require "webmock/rspec"
 
 require_relative "support/helpers"
