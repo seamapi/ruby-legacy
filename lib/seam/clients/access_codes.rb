@@ -31,7 +31,7 @@ module Seam
         )
         action_attempt.wait_until_finished
         # TODO check if failed
-        Seam::AccessCode.new(action_attempt.result, @client)
+        Seam::AccessCode.new(action_attempt.result["access_code"], @client)
       end
     end
   end
