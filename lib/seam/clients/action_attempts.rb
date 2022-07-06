@@ -2,7 +2,7 @@
 
 module Seam
   module Clients
-    class ActionAttempt < BaseClient
+    class ActionAttempts < BaseClient
       def get(action_attempt_id)
         request_seam_object(
           :get,
