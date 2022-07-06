@@ -12,6 +12,16 @@ module Seam
           params: { connect_webview_id: connect_webview_id }
         )
       end
+
+      def create(accepted_providers: nil)
+        request_seam_object(
+          :post,
+          "/connect_webviews/create",
+          Seam::ConnectWebview,
+          "connect_webview",
+          body: { accepted_providers: accepted_providers }
+        )        
+      end
     end
   end
 end

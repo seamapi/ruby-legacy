@@ -32,6 +32,11 @@ module Seam
 
       return response.parse if response.status.success?
 
+      if response.status.code == 400 and !response.parse["error"].nil?
+        err = response.parse["error"]
+        raise Error.new("Api Error #{err["type"]}\nrequest_id: #{err["request_id"]}\n#{err["message"]}", response.status.code, response)
+      end
+
       raise Error.new("Api Error #{response.status.code} #{method} #{uri}", response.status.code, response)
     end
 
