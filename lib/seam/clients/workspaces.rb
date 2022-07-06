@@ -13,14 +13,24 @@ module Seam
         )
       end
 
-      def list()
+      def list
         request_seam_object(
           :get,
           "/workspaces/list",
           Seam::Workspace,
           "workspaces",
-          params: {  }
+          params: {}
         )
+      end
+
+      def reset_sandbox
+        response = Seam::Request.new(
+          @client.api_key,
+          @client.base_uri
+        ).perform(
+          :post, "/workspaces/reset_sandbox", {}
+        )
+        response
       end
     end
   end
