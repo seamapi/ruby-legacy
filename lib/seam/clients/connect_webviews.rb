@@ -13,6 +13,16 @@ module Seam
         )
       end
 
+      def list
+        request_seam_object(
+          :get,
+          "/connect_webviews/list",
+          Seam::ConnectWebview,
+          "connect_webviews",
+          params: {}
+        )
+      end
+
       def create(accepted_providers: nil)
         request_seam_object(
           :post,
