@@ -21,3 +21,6 @@ Metrics/BlockLength:
 
 Gemspec/RequireMFA:
   Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false

@@ -27,5 +27,14 @@ module Seam
         new(data, client)
       end
     end
+
+    def inspect
+      "<#{self.class.name}:#{"0x00%x" % (object_id << 1)}\n" + # rubocop:disable Style/StringConcatenation, Style/FormatString
+        instance_variables
+        .map { |k| k.to_s.sub("@", "") }
+        .filter { |k| k != "data" and k != "client" and respond_to? k }
+        .map { |k| "  #{k}=#{send(k).inspect}" }
+        .join("\n") + ">"
+    end
   end
 end
