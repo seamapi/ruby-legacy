@@ -7,13 +7,15 @@ module Seam
       #
       # @param [String] device_id
       # @return [Seam::ActionAttempt]
-      def unlock_door(device_id)
+      def unlock_door(device_or_id)
         request_seam_object(
           :post,
           "/locks/unlock_door",
           Seam::ActionAttempt,
           "action_attempt",
-          body: { device_id: device_id }
+          body: {
+            device_id: device_id(device_or_id)
+          }
         )
       end
 
@@ -21,13 +23,15 @@ module Seam
       #
       # @param [String] device_id
       # @return [Seam::ActionAttempt]
-      def lock_door(device_id)
+      def lock_door(device_or_id)
         request_seam_object(
           :post,
           "/locks/lock_door",
           Seam::ActionAttempt,
           "action_attempt",
-          body: { device_id: device_id }
+          body: {
+            device_id: device_id(device_or_id)
+          }
         )
       end
 
@@ -41,14 +45,22 @@ module Seam
         )
       end
 
-      def get(device_id)
+      def get(device_or_id)
         request_seam_object(
           :get,
           "/locks/get",
           Seam::Device,
           "device",
-          params: { device_id: device_id }
+          params: {
+            device_id: device_id(device_or_id)
+          }
         )
+      end
+
+      protected
+
+      def device_id(device_or_id)
+        device_or_id.is_a?(Seam::Device) ? device_or_id.device_id : device_or_id
       end
     end
   end

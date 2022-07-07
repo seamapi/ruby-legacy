@@ -24,7 +24,7 @@ Then execute
 > To use this sdk, you'll need to generate an API Key on the [Seam Dashboard](https://dashboard.getseam.com)
 
 ```ruby
-seam = Seam::Client.new("MY_API_KEY")
+seam = Seam::Client.new(api_key: "MY_API_KEY")
 
 devices = seam.devices.list
 

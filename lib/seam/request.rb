@@ -4,7 +4,7 @@ require "http"
 
 module Seam
   class Request
-    attr_reader :base_uri, :api_key
+    attr_reader :base_uri, :api_key, :debug
 
     class Error < StandardError
       def initialize(message, status, response)
@@ -14,13 +14,14 @@ module Seam
       end
     end
 
-    def initialize(api_key, base_uri)
-      @base_uri = base_uri
+    def initialize(api_key:, base_uri:, debug: false)
       @api_key = api_key
+      @base_uri = base_uri
+      @debug = debug
     end
 
     def perform(method, uri, config = {})
-      Logger.info("Request: #{method} #{uri} #{config}")
+      Logger.info("Request: #{method} #{uri} #{config}") if debug
 
       config[:body] = config[:body].to_json if config[:body]
 
@@ -32,15 +33,21 @@ module Seam
 
       return response.parse if response.status.success?
 
-      if response.status.code == 400 and !response.parse["error"].nil?
-        err = response.parse["error"]
-        raise Error.new("Api Error #{err["type"]}\nrequest_id: #{err["request_id"]}\n#{err["message"]}", response.status.code, response)
-      end
-
-      raise Error.new("Api Error #{response.status.code} #{method} #{uri}", response.status.code, response)
+      handle_error_response(response, method, uri)
     end
 
     protected
+
+    def handle_error_response(response, method, uri)
+      msg = "Api Error #{response.status.code} #{method} #{uri}"
+      code = response.status.code
+
+      if code == 400 && (err = response.parse["error"])
+        msg = "Api Error #{err["type"]}\nrequest_id: #{err["request_id"]}\n#{err["message"]}"
+      end
+
+      raise Error.new(msg, code, response)
+    end
 
     def build_url(uri)
       "#{base_uri}#{uri}"

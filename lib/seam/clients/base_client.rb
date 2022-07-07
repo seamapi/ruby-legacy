@@ -9,17 +9,8 @@ module Seam
         @client = client
       end
 
-      def request_seam_object(method, path, klass, inner_object, config = {})
-        response = Seam::Request.new(
-          client.api_key,
-          client.base_uri
-        ).perform(
-          method, path, config
-        )
-
-        data = response[inner_object]
-
-        klass.load_from_response(data, @client)
+      def request_seam_object(*attrs)
+        client.request_seam_object(*attrs)
       end
     end
   end

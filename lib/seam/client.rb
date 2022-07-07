@@ -2,21 +2,16 @@
 
 module Seam
   class Client
-    attr_accessor :api_key, :base_uri
+    attr_accessor :api_key, :base_uri, :debug
 
-    def initialize(api_key, base_uri = "https://connect.getseam.com")
+    def initialize(api_key:, base_uri: "https://connect.getseam.com", debug: false)
       @api_key = api_key
       @base_uri = base_uri
+      @debug = debug
     end
 
     def health
-      response = Seam::Request.new(
-        @api_key,
-        @base_uri
-      ).perform(
-        "GET", "/health", {}
-      )
-      response
+      request_seam(:get, "/health")
     end
 
     def locks
@@ -45,6 +40,24 @@ module Seam
 
     def workspaces
       @workspaces ||= Seam::Clients::Workspaces.new(self)
+    end
+
+    def request_seam_object(method, path, klass, inner_object, config = {})
+      response = request_seam(method, path, config)
+
+      data = response[inner_object]
+
+      klass.load_from_response(data, @client)
+    end
+
+    def request_seam(method, path, config = {})
+      Seam::Request.new(
+        api_key: api_key,
+        base_uri: base_uri,
+        debug: debug
+      ).perform(
+        method, path, config
+      )
     end
   end
 end

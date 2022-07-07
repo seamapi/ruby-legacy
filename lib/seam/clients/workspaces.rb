@@ -24,13 +24,12 @@ module Seam
       end
 
       def reset_sandbox
-        response = Seam::Request.new(
+        Seam::Request.new(
           @client.api_key,
           @client.base_uri
         ).perform(
           :post, "/workspaces/reset_sandbox", {}
         )
-        response
       end
     end
   end

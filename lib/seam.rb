@@ -11,6 +11,7 @@ require_relative "seam/clients/workspaces"
 require_relative "seam/clients/connect_webviews"
 require_relative "seam/clients/connected_accounts"
 require_relative "seam/clients/access_codes"
+require_relative "seam/clients/action_attempts"
 require_relative "seam/resources/base_resource"
 require_relative "seam/resources/device"
 require_relative "seam/resources/access_code"
@@ -20,5 +21,4 @@ require_relative "seam/resources/connected_account"
 require_relative "seam/resources/workspace"
 
 module Seam
-
 end

@@ -32,7 +32,7 @@ module Seam
           body: { device_id: device_id, code: code, starts_at: starts_at, ends_at: ends_at, name: name }.compact
         )
         action_attempt.wait_until_finished
-        # TODO check if failed
+        # TODO: check if failed
         Seam::AccessCode.new(action_attempt.result["access_code"], @client)
       end
 

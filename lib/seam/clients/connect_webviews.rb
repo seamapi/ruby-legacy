@@ -30,7 +30,7 @@ module Seam
           Seam::ConnectWebview,
           "connect_webview",
           body: { accepted_providers: accepted_providers }
-        )        
+        )
       end
     end
   end

@@ -13,7 +13,9 @@ module Seam
         )
       end
 
-      def get(device_id)
+      def get(device_or_id)
+        device_id = device_or_id.is_a?(Seam::Device) ? device_or_id.device_id : device_or_id
+
         request_seam_object(
           :get,
           "/devices/get",

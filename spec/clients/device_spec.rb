@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe Seam::Device do
-  let(:client) { Seam::Client.new("some_api_key") }
+  let(:client) { Seam::Client.new(api_key: "some_api_key") }
+
   describe ".list" do
     let(:device_hash) { { device_id: "123" } }
 

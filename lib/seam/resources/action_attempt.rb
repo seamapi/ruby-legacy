@@ -11,7 +11,7 @@ module Seam
           "/action_attempts/get",
           params: { action_attempt_id: @action_attempt_id }
         )
-        self.update_from_response(res["action_attempt"])
+        update_from_response(res["action_attempt"])
         sleep(0.2)
       end
       self
