@@ -2,6 +2,8 @@
 
 module Seam
   class AccessCode < BaseResource
-    attr_reader :access_code_id, :name, :starts_at, :ends_at, :type, :created_at, :code
+    attr_reader :access_code_id, :name, :type, :code
+
+    date_accessor :starts_at, :ends_at
   end
 end

@@ -36,5 +36,21 @@ module Seam
         .map { |k| "  #{k}=#{send(k).inspect}" }
         .join("\n") + ">"
     end
+
+    def self.date_accessor(*attrs)
+      attrs.each do |attr|
+        define_method(attr) do
+          value = instance_variable_get("@#{attr}")
+          raise "No value for #{attr} set" if value.nil
+          parse_datetime(value)
+        end
+      end
+    end
+
+    protected
+
+    def parse_datetime(value)
+      Time.parse(value)
+    end
   end
 end

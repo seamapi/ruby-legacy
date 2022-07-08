@@ -13,7 +13,9 @@ module Seam
         )
       end
 
-      def list(device_id)
+      def list(device_or_id)
+        device_id = device_or_id.is_a?(Seam::Device) ? device_or_id.device_id : device_or_id
+
         request_seam_object(
           :get,
           "/access_codes/list",
