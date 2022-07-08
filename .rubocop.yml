@@ -24,3 +24,6 @@ Gemspec/RequireMFA:
 
 Metrics/AbcSize:
   Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false
