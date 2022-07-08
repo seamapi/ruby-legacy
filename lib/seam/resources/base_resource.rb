@@ -41,7 +41,9 @@ module Seam
       attrs.each do |attr|
         define_method(attr) do
           value = instance_variable_get("@#{attr}")
-          raise "No value for #{attr} set" if value.nil
+
+          raise "No value for #{attr} set" if value.nil?
+
           parse_datetime(value)
         end
       end
