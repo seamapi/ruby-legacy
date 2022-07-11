@@ -23,12 +23,11 @@ module Seam
         )
       end
 
-      def reset_sandbox
-        Seam::Request.new(
-          @client.api_key,
-          @client.base_uri
-        ).perform(
-          :post, "/workspaces/reset_sandbox", {}
+      def reset_sandbox(workspace_id)
+        request_seam(
+          :post,
+          "/workspaces/reset_sandbox",
+          params: { workspace_id: workspace_id }
         )
       end
     end

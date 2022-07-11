@@ -47,7 +47,7 @@ module Seam
 
       data = response[inner_object]
 
-      klass.load_from_response(data, @client)
+      klass.load_from_response(data, self)
     end
 
     def request_seam(method, path, config = {})

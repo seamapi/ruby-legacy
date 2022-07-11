@@ -12,6 +12,10 @@ module Seam
       def request_seam_object(*attrs)
         client.request_seam_object(*attrs)
       end
+
+      def request_seam(*attrs)
+        client.request_seam(*attrs)
+      end
     end
   end
 end

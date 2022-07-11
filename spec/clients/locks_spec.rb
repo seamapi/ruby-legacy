@@ -3,7 +3,39 @@
 RSpec.describe Seam::Clients::Locks do
   let(:client) { Seam::Client.new(api_key: "some_api_key") }
 
-  describe "#unlock" do
+  describe "#list" do
+    let(:locks_hash) { { device_id: "123" } }
+
+    before do
+      stub_seam_request(:get, "/locks/list", { locks: [locks_hash] })
+    end
+
+    let(:devices) { client.locks.list }
+
+    it "returns a list of Devices" do
+      expect(devices).to be_a(Array)
+      expect(devices.first).to be_a(Seam::Device)
+      expect(devices.first.device_id).to be_a(String)
+    end
+  end
+
+  describe "#get" do
+    let(:device_id) { "device_id_1234" }
+    let(:locks_hash) { { device_id: device_id } }
+
+    before do
+      stub_seam_request(:get, "/locks/get", { lock: locks_hash }).with(query: { device_id: device_id })
+    end
+
+    let(:lock) { client.locks.get(device_id) }
+
+    it "returns a list of Devices" do
+      expect(lock).to be_a(Seam::Device)
+      expect(lock.device_id).to be_a(String)
+    end
+  end
+
+  describe "#operations" do
     let(:action_attempt_id) { "action_attempt_id_1234" }
     let(:action_attempt_hash) do
       { action_attempt_id: action_attempt_id,
@@ -17,7 +49,7 @@ RSpec.describe Seam::Clients::Locks do
     before do
       stub_seam_request(
         :post,
-        "/locks/unlock_door",
+        "/locks/#{endpoint}",
         {
           action_attempt: action_attempt_hash
         }
@@ -26,20 +58,45 @@ RSpec.describe Seam::Clients::Locks do
       end
     end
 
-    describe "with a device_id" do
-      let(:result) { client.locks.unlock_door(device_id) }
+    describe "#unlock" do
+      let(:endpoint) { "unlock_door" }
 
-      it "returns an action attempt" do
-        expect(result).to be_a(Seam::ActionAttempt)
+      describe "with a device_id" do
+        let(:result) { client.locks.unlock_door(device_id) }
+
+        it "returns an action attempt" do
+          expect(result).to be_a(Seam::ActionAttempt)
+        end
+      end
+
+      describe "with a device object" do
+        let(:device) { Seam::Device.new({ device_id: device_id }) }
+        let(:result) { client.locks.unlock_door(device) }
+
+        it "returns an action attempt" do
+          expect(result).to be_a(Seam::ActionAttempt)
+        end
       end
     end
 
-    describe "with a device object" do
-      let(:device) { Seam::Device.new({ device_id: device_id }) }
-      let(:result) { client.locks.unlock_door(device) }
+    describe "#lock" do
+      let(:endpoint) { "lock_door" }
 
-      it "returns an action attempt" do
-        expect(result).to be_a(Seam::ActionAttempt)
+      describe "with a device_id" do
+        let(:result) { client.locks.lock_door(device_id) }
+
+        it "returns an action attempt" do
+          expect(result).to be_a(Seam::ActionAttempt)
+        end
+      end
+
+      describe "with a device object" do
+        let(:device) { Seam::Device.new({ device_id: device_id }) }
+        let(:result) { client.locks.lock_door(device) }
+
+        it "returns an action attempt" do
+          expect(result).to be_a(Seam::ActionAttempt)
+        end
       end
     end
   end

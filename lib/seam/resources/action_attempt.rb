@@ -5,6 +5,7 @@ module Seam
     attr_accessor :action_attempt_id, :action_type, :status, :result
 
     SLEEP_TIME = 0.2
+    MAX_ATTEMPTS = 10
 
     def wait_until_finished
       while @status == "pending"

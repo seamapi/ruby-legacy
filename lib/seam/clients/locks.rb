@@ -40,7 +40,7 @@ module Seam
           :get,
           "/locks/list",
           Seam::Device,
-          "devices",
+          "locks",
           params: params
         )
       end
@@ -50,7 +50,7 @@ module Seam
           :get,
           "/locks/get",
           Seam::Device,
-          "device",
+          "lock",
           params: {
             device_id: device_id(device_or_id)
           }

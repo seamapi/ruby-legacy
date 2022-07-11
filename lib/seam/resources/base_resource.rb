@@ -2,7 +2,7 @@
 
 module Seam
   class BaseResource
-    attr_accessor :data
+    attr_accessor :data, :client
 
     def initialize(data, client = nil)
       @data = data
