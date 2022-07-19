@@ -49,6 +49,24 @@ module Seam
         action_attempt.wait_until_finished
         action_attempt
       end
+
+      def update(access_code_id: nil, name: nil, code: nil, starts_at: nil, ends_at: nil)
+        action_attempt = request_seam_object(
+          :post,
+          "/access_codes/update",
+          Seam::ActionAttempt,
+          "action_attempt",
+          body: {
+            access_code_id: access_code_id,
+            name: name,
+            code: code,
+            starts_at: starts_at,
+            ends_at: ends_at
+          }.compact
+        )
+        action_attempt.wait_until_finished
+        action_attempt
+      end
     end
   end
 end
