@@ -27,3 +27,6 @@ Metrics/AbcSize:
 
 Style/BlockDelimiters:
   Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
