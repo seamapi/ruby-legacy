@@ -3,11 +3,11 @@
 module Seam
   module Clients
     class ConnectedAccounts < BaseClient
-      def get(connected_account_id_or_hash)
-        params = if connected_account_id_or_hash.is_a?(Hash)
-                   { email: connected_account_id_or_hash[:email] }
+      def get(connected_account_id_or_params)
+        params = if connected_account_id_or_params.is_a?(String)
+                   { connected_account_id: connected_account_id_or_params }
                  else
-                   { connected_account_id: connected_account_id_or_hash }
+                   connected_account_id_or_params
                  end
 
         request_seam_object(
@@ -15,7 +15,7 @@ module Seam
           "/connected_accounts/get",
           Seam::ConnectedAccount,
           "connected_account",
-          params: params.compact
+          params: params
         )
       end
 
