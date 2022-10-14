@@ -5,7 +5,7 @@ module Seam
     attr_accessor :api_key, :base_uri, :debug
 
     def initialize(api_key:, base_uri: "https://connect.getseam.com", debug: false)
-      @api_key = api_key
+      @api_key = api_key || ENV.fetch["SEAM_API_KEY"]
       @base_uri = base_uri
       @debug = debug
     end
