@@ -4,10 +4,12 @@ module Seam
   class Client
     attr_accessor :api_key, :base_uri, :debug
 
-    def initialize(api_key:, base_uri: "https://connect.getseam.com", debug: false)
-      @api_key = api_key
+    def initialize(api_key: nil, base_uri: "https://connect.getseam.com", debug: false)
+      @api_key = api_key || ENV.fetch("SEAM_API_KEY", nil)
       @base_uri = base_uri
       @debug = debug
+
+      raise ArgumentError, "SEAM_API_KEY not found in environment, and api_key not provided" unless @api_key
     end
 
     def health
