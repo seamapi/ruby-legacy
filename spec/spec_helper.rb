@@ -3,7 +3,7 @@ require "simplecov-console"
 
 SimpleCov.start
 
-require "makenew-rbgem"
+require "seamapi"
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::HTMLFormatter,

@@ -62,18 +62,18 @@ makenew () {
   sed_insert README.md '10i' 'TODO'
 
   find_replace "s/^  \"VERSION\" = \".*\"/  \"VERSION\" = \"0.0.0\"/g"
-  find_replace "s/Ruby Gem Package Skeleton/${mk_title}/g"
+  find_replace "s/Seam API Ruby SDK/${mk_title}/g"
   find_replace "s/Package skeleton for a Ruby gem\./${mk_description}/g"
-  find_replace "s/Evan Sosenko/${mk_author}/g"
+  find_replace "s/Seam Labs, Inc./${mk_author}/g"
   find_replace "s/razorx@evansosenko\.com/${mk_email}/g"
-  find_replace "s|MakenewRbgem|${mk_module}|g"
-  find_replace "s|makenew-rbgem|${mk_slug}|g"
-  find_replace "s|makenew/rbgem|${mk_user}/${mk_repo}|g"
-  find_replace "s|rbgem|${mk_repo}|g"
+  find_replace "s|Seam|${mk_module}|g"
+  find_replace "s|seamapi|${mk_slug}|g"
+  find_replace "s|seamapi/ruby|${mk_user}/${mk_repo}|g"
+  find_replace "s|ruby|${mk_repo}|g"
 
-  git mv makenew-rbgem.gemspec "${mk_slug}.gemspec"
-  git mv lib/makenew-rbgem.rb "lib/${mk_slug}.rb"
-  git mv lib/makenew-rbgem "lib/${mk_slug}"
+  git mv seamapi.gemspec "${mk_slug}.gemspec"
+  git mv lib/seamapi.rb "lib/${mk_slug}.rb"
+  git mv lib/seamapi "lib/${mk_slug}"
 
   echo
   echo 'Replacing boilerplate.'

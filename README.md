@@ -1,106 +1,20 @@
-# Ruby Gem Package Skeleton
+# Seam API Ruby SDK
 
-[![RubyGems.org](https://img.shields.io/gem/v/makenew-rbgem)](https://rubygems.org/gems/makenew-rbgem)
-[![GitHub Actions](https://github.com/makenew/rbgem/workflows/main/badge.svg)](https://github.com/makenew/rbgem/actions)
+[![RubyGems.org](https://img.shields.io/gem/v/seamapi)](https://rubygems.org/gems/seamapi)
+[![GitHub Actions](https://github.com/seamapi/ruby/workflows/main/badge.svg)](https://github.com/seamapi/ruby/actions)
 
-Package skeleton for a Ruby gem.
+Official interface to the Seam Connect API.
 
 ## Description
 
-Bootstrap a new Ruby gem in five minutes or less.
-
-### Features
-
-- [Ruby]'s [gem][rubygems.org] package structure.
-- Consistent dependency management with [Bundler].
-- Release your Ruby gems with ease using [gem release].
-- [Standard] Ruby style guide, linter, and formatter.
-- Productive and fun testing with [RSpec].
-- Code coverage reporting with [SimpleCov].
-- Continuous testing and gem publishing with [GitHub Actions].
-- [Keep a CHANGELOG].
-- Consistent coding with [EditorConfig].
-- Badges from [Shields.io].
-
-[bundler]: https://bundler.io/
-[editorconfig]: https://editorconfig.org/
-[github actions]: https://github.com/features/actions
-[keep a changelog]: https://keepachangelog.com/
-[rspec]: https://rspec.info/
-[rubygems.org]: https://rubygems.org/
-[ruby]: https://www.ruby-lang.org/
-[shields.io]: https://shields.io/
-[simplecov]: https://github.com/simplecov-ruby/simplecov
-[standard]: https://github.com/testdouble/standard
-[gem release]: https://github.com/svenfuchs/gem-release
-
-### Bootstrapping a new project
-
-1. Create an empty (**non-initialized**) repository on GitHub.
-2. Clone the master branch of this repository with
-   ```
-   $ git clone --single-branch git@github.com:makenew/rbgem.git <new-ruby-gem>
-   $ cd <new-ruby-gem>
-   ```
-   Optionally, reset to the latest version with
-   ```
-   $ git reset --hard <version-tag>
-   ```
-3. Run
-   ```
-   $ ./makenew.sh
-   ```
-   This will replace the boilerplate, delete itself,
-   remove the git remote, remove upstream tags,
-   and stage changes for commit.
-4. Create the required GitHub repository secrets.
-5. Review, commit, and push the changes to GitHub with
-   ```
-   $ git diff --cached
-   $ git commit -m "Replace makenew boilerplate"
-   $ git remote add origin git@github.com:<user>/<new-ruby-gem>.git
-   $ git push -u origin master
-   ```
-6. Ensure the GitHub action passes,
-   then publish the initial version of the package with
-   ```
-   $ bundle install
-   $ bundle exec gem bump --sign --push --version patch
-   $ bundle exec gem tag --sign --push
-   ```
-
-### Updating from this skeleton
-
-If you want to pull in future updates from this skeleton,
-you can fetch and merge in changes from this repository.
-
-Add this as a new remote with
-
-```
-$ git remote add upstream git@github.com:makenew/rbgem.git
-```
-
-You can then fetch and merge changes with
-
-```
-$ git fetch --no-tags upstream
-$ git merge upstream/master
-```
-
-#### Changelog for this skeleton
-
-Note that `CHANGELOG.md` is just a template for this skeleton.
-The actual changes for this project are documented in the commit history
-and summarized under [Releases].
-
-[releases]: https://github.com/makenew/rbgem/releases
+TODO
 
 ## Installation
 
 Add this as a dependency to your project using [Bundler] with
 
 ```
-$ bundle add makenew-rbgem
+$ bundle add seamapi
 ```
 
 [bundler]: https://bundler.io/
@@ -110,8 +24,8 @@ $ bundle add makenew-rbgem
 ### Quickstart
 
 ```
-$ git clone https://github.com/makenew/rbgem.git
-$ cd rbgem
+$ git clone https://github.com/seamapi/ruby.git
+$ cd ruby
 $ bundle install
 ```
 
@@ -137,10 +51,10 @@ The [source code] is hosted on GitHub.
 Clone the project with
 
 ```
-$ git clone git@github.com:makenew/rbgem.git
+$ git clone git@github.com:seamapi/ruby.git
 ```
 
-[source code]: https://github.com/makenew/rbgem
+[source code]: https://github.com/seamapi/ruby
 
 ### Requirements
 
@@ -171,7 +85,7 @@ Publishing may be triggered using on the web
 using a [workflow_dispatch on GitHub Actions].
 
 [gem release]: https://github.com/svenfuchs/gem-release
-[workflow_dispatch on github actions]: https://github.com/makenew/rbgem/actions?query=workflow%3Aversion
+[workflow_dispatch on github actions]: https://github.com/seamapi/ruby/actions?query=workflow%3Aversion
 
 ## GitHub Actions
 
@@ -205,7 +119,7 @@ Please submit and comment on bug reports and feature requests.
 
 To submit a patch:
 
-1. Fork it (https://github.com/makenew/rbgem/fork).
+1. Fork it (https://github.com/seamapi/ruby/fork).
 2. Create your feature branch (`git checkout -b my-new-feature`).
 3. Make changes.
 4. Commit your changes (`git commit -am 'Add some feature'`).

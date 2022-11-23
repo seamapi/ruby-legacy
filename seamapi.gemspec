@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative "lib/makenew-rbgem/version"
+require_relative "lib/seamapi/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "makenew-rbgem"
-  spec.version = MakenewRbgem::VERSION
-  spec.author = "Evan Sosenko"
-  spec.email = "razorx@evansosenko.com"
+  spec.name = "seamapi"
+  spec.version = Seam::VERSION
+  spec.author = "Seam Labs, Inc."
+  spec.email = "git@getseam.com"
 
   spec.summary = "Ruby Gem Project Skeleton"
   spec.description = "Project skeleton for a Ruby gem."
-  spec.homepage = "https://github.com/makenew/rbgem"
+  spec.homepage = "https://github.com/seamapi/ruby"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
 
@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = spec.homepage
   spec.metadata["bug_tracker_uri"] = "#{spec.metadata["source_code_uri"]}/issues"
   spec.metadata["changelog_uri"] = "#{spec.metadata["source_code_uri"]}/blob/master/CHANGELOG.md"
-  spec.metadata["github_repo"] = "git@github.com:makenew/rbgem.git"
+  spec.metadata["github_repo"] = "git@github.com:seamapi/ruby.git"
 
   spec.bindir = "bin"
   spec.executables = spec.files.grep(%r{\A#{spec.bindir}/}) { |f| File.basename(f) }

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe MakenewRbgem::Todo do
-  subject(:todo) { MakenewRbgem::Todo.new }
+RSpec.describe Seam::Todo do
+  subject(:todo) { Seam::Todo.new }
 
   describe ".todo" do
     it "returns todo" do
