@@ -28,7 +28,7 @@ module Seam
       response = HTTP.request(
         method,
         build_url(uri),
-        { headers: headers }.merge(config)
+        {headers: headers}.merge(config)
       )
 
       return response.parse if response.status.success?
