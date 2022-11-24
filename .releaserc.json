@@ -1,0 +1,12 @@
+{
+  "branches": ["main", "merge-skeleton"],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    [
+      "@semantic-release/exec",
+      {
+        "publishCmd": "echo \"::set-output name=version::${nextRelease.version}\""
+      }
+    ]
+  ]
+}
