@@ -19,13 +19,13 @@ RSpec.describe Seam::ActionAttempt do
       stub_seam_request(
         :get,
         "/action_attempts/get?action_attempt_id=#{action_attempt_id}",
-        { action_attempt: action_attempt_hash }
+        {action_attempt: action_attempt_hash}
       ).times(2)
         .then
         .to_return(
           {
             status: 200,
-            headers: { "Content-Type": "application/json" },
+            headers: {"Content-Type": "application/json"},
             body: {
               action_attempt: action_attempt_hash.merge(status: finished_status)
             }.to_json
@@ -46,7 +46,7 @@ RSpec.describe Seam::ActionAttempt do
       stub_seam_request(
         :get,
         "/action_attempts/get?action_attempt_id=#{action_attempt_id}",
-        { action_attempt: updated_action_attempt_hash }
+        {action_attempt: updated_action_attempt_hash}
       )
     end
 

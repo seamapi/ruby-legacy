@@ -9,7 +9,7 @@ module Seam
           "/access_codes/get",
           Seam::AccessCode,
           "access_code",
-          params: { access_code_id: access_code_id }
+          params: {access_code_id: access_code_id}
         )
       end
 
@@ -21,7 +21,7 @@ module Seam
           "/access_codes/list",
           Seam::AccessCode,
           "access_codes",
-          params: { device_id: device_id }
+          params: {device_id: device_id}
         )
       end
 
@@ -31,7 +31,7 @@ module Seam
           "/access_codes/create",
           Seam::ActionAttempt,
           "action_attempt",
-          body: { device_id: device_id, code: code, starts_at: starts_at, ends_at: ends_at, name: name }.compact
+          body: {device_id: device_id, code: code, starts_at: starts_at, ends_at: ends_at, name: name}.compact
         )
         action_attempt.wait_until_finished
         # TODO: check if failed
@@ -44,7 +44,7 @@ module Seam
           "/access_codes/delete",
           Seam::ActionAttempt,
           "action_attempt",
-          body: { access_code_id: access_code_id }
+          body: {access_code_id: access_code_id}
         )
         action_attempt.wait_until_finished
         action_attempt

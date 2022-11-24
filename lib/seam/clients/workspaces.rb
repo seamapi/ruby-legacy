@@ -9,7 +9,7 @@ module Seam
           "/workspaces/get",
           Seam::Workspace,
           "workspace",
-          params: { workspace_id: workspace_id }
+          params: {workspace_id: workspace_id}
         )
       end
 
@@ -27,7 +27,7 @@ module Seam
         request_seam(
           :post,
           "/workspaces/reset_sandbox",
-          params: { workspace_id: workspace_id }
+          params: {workspace_id: workspace_id}
         )
       end
     end

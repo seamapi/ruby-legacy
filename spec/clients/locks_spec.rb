@@ -4,10 +4,10 @@ RSpec.describe Seam::Clients::Locks do
   let(:client) { Seam::Client.new(api_key: "some_api_key") }
 
   describe "#list" do
-    let(:locks_hash) { { device_id: "123" } }
+    let(:locks_hash) { {device_id: "123"} }
 
     before do
-      stub_seam_request(:get, "/locks/list", { locks: [locks_hash] })
+      stub_seam_request(:get, "/locks/list", {locks: [locks_hash]})
     end
 
     let(:devices) { client.locks.list }
@@ -21,10 +21,10 @@ RSpec.describe Seam::Clients::Locks do
 
   describe "#get" do
     let(:device_id) { "device_id_1234" }
-    let(:locks_hash) { { device_id: device_id } }
+    let(:locks_hash) { {device_id: device_id} }
 
     before do
-      stub_seam_request(:get, "/locks/get", { lock: locks_hash }).with(query: { device_id: device_id })
+      stub_seam_request(:get, "/locks/get", {lock: locks_hash}).with(query: {device_id: device_id})
     end
 
     let(:lock) { client.locks.get(device_id) }
@@ -38,10 +38,10 @@ RSpec.describe Seam::Clients::Locks do
   describe "#operations" do
     let(:action_attempt_id) { "action_attempt_id_1234" }
     let(:action_attempt_hash) do
-      { action_attempt_id: action_attempt_id,
-        action_type: "test",
-        status: "",
-        result: "" }
+      {action_attempt_id: action_attempt_id,
+       action_type: "test",
+       status: "",
+       result: ""}
     end
 
     let(:device_id) { "device_id_1234" }
@@ -54,7 +54,7 @@ RSpec.describe Seam::Clients::Locks do
           action_attempt: action_attempt_hash
         }
       ).with do |req|
-        req.body.source == { device_id: device_id }.to_json
+        req.body.source == {device_id: device_id}.to_json
       end
     end
 
@@ -70,7 +70,7 @@ RSpec.describe Seam::Clients::Locks do
       end
 
       describe "with a device object" do
-        let(:device) { Seam::Device.new({ device_id: device_id }) }
+        let(:device) { Seam::Device.new({device_id: device_id}) }
         let(:result) { client.locks.unlock_door(device) }
 
         it "returns an action attempt" do
@@ -91,7 +91,7 @@ RSpec.describe Seam::Clients::Locks do
       end
 
       describe "with a device object" do
-        let(:device) { Seam::Device.new({ device_id: device_id }) }
+        let(:device) { Seam::Device.new({device_id: device_id}) }
         let(:result) { client.locks.lock_door(device) }
 
         it "returns an action attempt" do
