@@ -7,7 +7,7 @@ RSpec.describe Seam do
 
   describe "#health" do
     before do
-      stub_seam_request(:get, "/health", {ok: true})
+      stub_seam_request(:get, "/health", { ok: true })
     end
 
     let(:client) { Seam::Client.new(api_key: "some_api_key") }

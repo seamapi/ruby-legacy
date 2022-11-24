@@ -5,13 +5,13 @@ RSpec.describe Seam::Clients::AccessCodes do
 
   describe "#get" do
     let(:action_attempt_id) { "action_attempt_id_1234" }
-    let(:action_attempt_hash) { {action_attempt_id: action_attempt_id} }
+    let(:action_attempt_hash) { { action_attempt_id: action_attempt_id } }
 
     before do
       stub_seam_request(
-        :get, "/action_attempts/get", {action_attempt: action_attempt_hash}
+        :get, "/action_attempts/get", { action_attempt: action_attempt_hash }
       ).with(
-        query: {action_attempt_id: action_attempt_id}
+        query: { action_attempt_id: action_attempt_id }
       )
     end
 

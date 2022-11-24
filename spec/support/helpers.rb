@@ -6,6 +6,6 @@ module Helpers
       method,
       "https://connect.getseam.com#{path}"
     ).to_return(status: status, body: response.to_json,
-      headers: {"Content-Type" => "application/json"}.merge(headers))
+                headers: { "Content-Type" => "application/json" }.merge(headers))
   end
 end

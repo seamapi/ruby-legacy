@@ -5,14 +5,14 @@ RSpec.describe Seam::Clients::ConnectedAccounts do
   let(:connected_account_id) { "connected_account_id_1234" }
 
   describe "#get" do
-    let(:connected_account_hash) { {connected_account_id: connected_account_id} }
+    let(:connected_account_hash) { { connected_account_id: connected_account_id } }
 
     context "with connected_account_id" do
       before do
         stub_seam_request(
-          :get, "/connected_accounts/get", {connected_account: connected_account_hash}
+          :get, "/connected_accounts/get", { connected_account: connected_account_hash }
         ).with(
-          query: {connected_account_id: connected_account_id}
+          query: { connected_account_id: connected_account_id }
         )
       end
 
@@ -28,9 +28,9 @@ RSpec.describe Seam::Clients::ConnectedAccounts do
 
       before do
         stub_seam_request(
-          :get, "/connected_accounts/get", {connected_account: connected_account_hash}
+          :get, "/connected_accounts/get", { connected_account: connected_account_hash }
         ).with(
-          query: {email: email}
+          query: { email: email }
         )
       end
 
@@ -43,11 +43,11 @@ RSpec.describe Seam::Clients::ConnectedAccounts do
   end
 
   describe "#list" do
-    let(:connected_account_hash) { {connected_account_id: connected_account_id} }
+    let(:connected_account_hash) { { connected_account_id: connected_account_id } }
 
     before do
       stub_seam_request(
-        :get, "/connected_accounts/list", {connected_accounts: [connected_account_hash]}
+        :get, "/connected_accounts/list", { connected_accounts: [connected_account_hash] }
       )
     end
 

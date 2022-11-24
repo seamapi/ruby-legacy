@@ -4,10 +4,10 @@ RSpec.describe Seam::Clients::Workspaces do
   let(:client) { Seam::Client.new(api_key: "some_api_key") }
 
   describe "#list" do
-    let(:workspace_hash) { {workspace_id: "123"} }
+    let(:workspace_hash) { { workspace_id: "123" } }
 
     before do
-      stub_seam_request(:get, "/workspaces/list", {workspaces: [workspace_hash]})
+      stub_seam_request(:get, "/workspaces/list", { workspaces: [workspace_hash] })
     end
 
     let(:workspaces) { client.workspaces.list }
@@ -21,13 +21,13 @@ RSpec.describe Seam::Clients::Workspaces do
 
   describe "#get" do
     let(:workspace_id) { "workspace_id_1234" }
-    let(:workspace_hash) { {workspace_id: workspace_id} }
+    let(:workspace_hash) { { workspace_id: workspace_id } }
 
     before do
       stub_seam_request(
-        :get, "/workspaces/get", {workspace: workspace_hash}
+        :get, "/workspaces/get", { workspace: workspace_hash }
       ).with(
-        query: {workspace_id: workspace_id}
+        query: { workspace_id: workspace_id }
       )
     end
 
@@ -43,9 +43,9 @@ RSpec.describe Seam::Clients::Workspaces do
 
     before do
       stub_seam_request(
-        :post, "/workspaces/reset_sandbox", {message: "ok"}
+        :post, "/workspaces/reset_sandbox", { message: "ok" }
       ).with(
-        query: {workspace_id: workspace_id}
+        query: { workspace_id: workspace_id }
       )
     end
 

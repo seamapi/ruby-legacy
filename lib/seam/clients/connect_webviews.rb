@@ -9,7 +9,7 @@ module Seam
           "/connect_webviews/get",
           Seam::ConnectWebview,
           "connect_webview",
-          params: {connect_webview_id: connect_webview_id}
+          params: { connect_webview_id: connect_webview_id }
         )
       end
 
@@ -29,7 +29,7 @@ module Seam
           "/connect_webviews/create",
           Seam::ConnectWebview,
           "connect_webview",
-          body: {accepted_providers: accepted_providers}
+          body: { accepted_providers: accepted_providers }
         )
       end
     end

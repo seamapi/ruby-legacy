@@ -19,7 +19,7 @@ module Seam
           "/devices/get",
           Seam::Device,
           "device",
-          params: {device_id: device_id}
+          params: { device_id: device_id }
         )
       end
     end
