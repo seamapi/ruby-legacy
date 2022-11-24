@@ -2,11 +2,14 @@
 
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"
+require "standard/rake"
 
-RSpec::Core::RakeTask.new(:spec)
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.rspec_opts = "--pattern {spec,lib}/**/*_spec.rb"
+end
 
-require "rubocop/rake_task"
+task default: %i[lint test]
 
-RuboCop::RakeTask.new
-
-task default: %i[spec rubocop]
+task test: "spec"
+task lint: "standard"
+task format: "standard:fix"
