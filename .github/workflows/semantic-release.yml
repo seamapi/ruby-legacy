@@ -4,21 +4,24 @@ name: semantic-release
 on:
   push:
     branches:
-      - main
+      - '**'
 
 jobs:
-  staging:
+  version:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+      - name: Install semantic-release plugins
+        run: npm install @semantic-release/exec@^6.0.0
       - name: Semantic release
+        id: release
         uses: cycjimmy/semantic-release-action@v3
         with:
           semantic_version: '^16.0.0'
-          extra_plugins: |
-            @semantic-release/exec@^6.0.0
       - name: Release version ${{ steps.release.outputs.new_release_version }}
         uses: peter-evans/repository-dispatch@v2
         if: ${{ steps.release.outputs.new_release_published == 'true' }}
