@@ -11,3 +11,11 @@ task default: %i[lint test]
 task test: "spec"
 task lint: "standard"
 task format: "standard:fix"
+
+task :console do
+  require "irb"
+  require "bundler/setup"
+  require "seamapi"
+  ARGV.clear
+  IRB.start
+end

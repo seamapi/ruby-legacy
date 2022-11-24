@@ -36,6 +36,8 @@ An API Key generated via the [Seam Dashboard].
 
 [Seam Dashboard]: https://dashboard.getseam.com
 
+### Example
+
 ```ruby
 seam = Seam::Client.new(api_key: "MY_SEAM_API_KEY")
 
@@ -77,7 +79,7 @@ $ bundle exec rake -T
 Play around with this module inside an interactive console with
 
 ```
-$ ./bin/console
+$ rake console
 ```
 
 Use a sandbox API key to play with the SDK without touching real devices.
