@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = "seamapi"
   spec.version = Seam::VERSION
   spec.author = "Seam Labs, Inc."
-  spec.email = "git@getseam.com"
+  spec.email = "devops@getseam.com"
 
   spec.summary = "Seam API Ruby SDK"
   spec.description = "Official interface to the Seam Connect API."
