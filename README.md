@@ -4,11 +4,13 @@
 [![GitHub Actions](https://github.com/seamapi/ruby/workflows/main/badge.svg)](https://github.com/seamapi/ruby/actions)
 [![Docs](https://img.shields.io/badge/docs-latest-blue)](https://docs.seam.co/)
 
-Official interface to the Seam Connect API.
+Official interface to the [Seam Connect API].
+
+[Seam Connect API]: https://docs.seam.co/
 
 ## Description
 
-This SDK provides convenient access to the Seam API for Ruby applications.
+This SDK provides convenient access to the [Seam Connect API] for Ruby applications.
 
 This library includes:
 
@@ -31,6 +33,8 @@ $ bundle add seamapi
 
 ## Usage
 
+_Refer to the [Seam Connect API documentation][Seam Connect API]._
+
 ### Requirements
 
 An API Key generated via the [Seam Dashboard].
@@ -41,11 +45,8 @@ An API Key generated via the [Seam Dashboard].
 
 ```ruby
 seam = Seam::Client.new(api_key: "MY_SEAM_API_KEY")
-
 devices = seam.devices.list
-
 my_door = devices.first
-
 seam.locks.unlock(my_door).wait_until_finished
 ```
 
