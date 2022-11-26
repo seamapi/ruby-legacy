@@ -2,6 +2,7 @@
 
 [![RubyGems.org](https://img.shields.io/gem/v/seamapi)](https://rubygems.org/gems/seamapi)
 [![GitHub Actions](https://github.com/seamapi/ruby/workflows/main/badge.svg)](https://github.com/seamapi/ruby/actions)
+[![Docs](https://img.shields.io/badge/docs-latest-blue)](https://docs.seam.co/)
 
 Official interface to the Seam Connect API.
 
