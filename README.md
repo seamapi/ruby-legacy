@@ -37,7 +37,8 @@ _Refer to the [Seam Connect API documentation][Seam Connect API]._
 
 ### Requirements
 
-An API Key generated via the [Seam Dashboard].
+- Ruby version 3 or later.
+- An API Key generated via the [Seam Dashboard].
 
 [Seam Dashboard]: https://dashboard.getseam.com
 
