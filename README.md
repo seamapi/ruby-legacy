@@ -140,20 +140,13 @@ _GitHub Actions should already be configured: this section is for reference only
 The following repository secrets must be set on [GitHub Actions]:
 
 - `RUBYGEMS_API_KEY`: RubyGems.org token for publishing packages.
-
-These must be set manually.
-
-### Secrets for Optional GitHub Actions
-
-The version and format GitHub actions
-require a user with write access to the repository.
-Set these additional secrets to enable the action:
-
 - `GH_TOKEN`: A personal access token for the user.
 - `GIT_USER_NAME`: The GitHub user's real name.
 - `GIT_USER_EMAIL`: The GitHub user's email.
 - `GPG_PRIVATE_KEY`: The GitHub user's [GPG private key].
 - `GPG_PASSPHRASE`: The GitHub user's GPG passphrase.
+
+These are set at the organization level.
 
 [github actions]: https://github.com/features/actions
 [gpg private key]: https://github.com/marketplace/actions/import-gpg#prerequisites
