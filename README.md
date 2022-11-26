@@ -127,12 +127,10 @@ $ bundle install
 
 ### Publishing
 
-Use [gem release] to release a new version.
+Releases are handled automatically by [semantic-release].
+Publishing may be triggered manually using a [workflow_dispatch on GitHub Actions].
 
-Publishing may be triggered using on the web
-using a [workflow_dispatch on GitHub Actions].
-
-[gem release]: https://github.com/svenfuchs/gem-release
+[semantic-release]: https://semantic-release.gitbook.io/
 [workflow_dispatch on github actions]: https://github.com/seamapi/ruby/actions?query=workflow%3Aversion
 
 ## GitHub Actions
