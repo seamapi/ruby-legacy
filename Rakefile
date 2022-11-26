@@ -12,6 +12,7 @@ task test: "spec"
 task lint: "standard"
 task format: "standard:fix"
 
+desc "Open an interactive ruby console"
 task :console do
   require "irb"
   require "bundler/setup"
