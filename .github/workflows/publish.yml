@@ -55,15 +55,25 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: Build
+        run: bundle exec rake build
       - name: Setup Node.js
         uses: actions/setup-node@v3
       - name: Generate release notes
         id: changelog
         run: |
-          body=$(npx conventional-changelog-cli@^2.0.0)
-          echo "::set-output name=body::$body"
+          mkdir tmp
+          outfile=tmp/changelog.txt
+          echo "outfile=${outfile}" >> $GITHUB_OUTPUT
+          npx standard-changelog@^2.0.0 --release-count 2 --infile $outfile.tmp --outfile $outfile.tmp
+          sed '1,7d' $outfile.tmp > $outfile
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
         with:
-          body: ${{ steps.changelog.outputs.body }}
-          prerelease: ${{ contains(github.head_ref_name, "-") }}
+          token: ${{ secrets.GH_TOKEN }}
+          body_path: ${{ github.workspace }}/${{ steps.changelog.outputs.outfile }}
+          files: pkg/*
+          fail_on_unmatched_files: true
+          prerelease: ${{ contains(github.ref_name, '-') }}
