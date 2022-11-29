@@ -76,4 +76,4 @@ jobs:
           body_path: ${{ github.workspace }}/${{ steps.changelog.outputs.outfile }}
           files: pkg/*
           fail_on_unmatched_files: true
-          prerelease: ${{ contains(github.ref_name, '-') }}
+          prerelease: ${{ contains(github.ref_name, 'pre') }}
