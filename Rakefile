@@ -2,11 +2,21 @@
 
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"
+require "standard/rake"
 
 RSpec::Core::RakeTask.new(:spec)
 
-require "rubocop/rake_task"
+task default: %i[lint test]
 
-RuboCop::RakeTask.new
+task test: "spec"
+task lint: "standard"
+task format: "standard:fix"
 
-task default: %i[spec rubocop]
+desc "Open an interactive ruby console"
+task :console do
+  require "irb"
+  require "bundler/setup"
+  require "seamapi"
+  ARGV.clear
+  IRB.start
+end

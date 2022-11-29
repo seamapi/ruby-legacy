@@ -9,7 +9,7 @@ module Seam
           "/action_attempts/get",
           Seam::ActionAttempt,
           "action_attempt",
-          params: { action_attempt_id: action_attempt_id }
+          params: {action_attempt_id: action_attempt_id}
         )
       end
     end

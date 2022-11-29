@@ -4,11 +4,11 @@ RSpec.describe Seam::Clients::ConnectWebviews do
   let(:client) { Seam::Client.new(api_key: "some_api_key") }
 
   describe "#list" do
-    let(:connect_webview_hash) { { connect_webview_id: "123" } }
+    let(:connect_webview_hash) { {connect_webview_id: "123"} }
     # let(:device_id) { "device_id_1234" }
 
     before do
-      stub_seam_request(:get, "/connect_webviews/list", { connect_webviews: [connect_webview_hash] })
+      stub_seam_request(:get, "/connect_webviews/list", {connect_webviews: [connect_webview_hash]})
     end
 
     let(:connect_webviews) { client.connect_webviews.list }
@@ -22,13 +22,13 @@ RSpec.describe Seam::Clients::ConnectWebviews do
 
   describe "#get" do
     let(:connect_webview_id) { "connect_webview_id_1234" }
-    let(:connect_webview_hash) { { connect_webview_id: connect_webview_id } }
+    let(:connect_webview_hash) { {connect_webview_id: connect_webview_id} }
 
     before do
       stub_seam_request(
-        :get, "/connect_webviews/get", { connect_webview: connect_webview_hash }
+        :get, "/connect_webviews/get", {connect_webview: connect_webview_hash}
       ).with(
-        query: { connect_webview_id: connect_webview_id }
+        query: {connect_webview_id: connect_webview_id}
       )
     end
 
@@ -41,13 +41,13 @@ RSpec.describe Seam::Clients::ConnectWebviews do
 
   describe "#create" do
     let(:accepted_providers) { %w[facebook google] }
-    let(:connect_webview_hash) { { connect_webview_id: "123" } }
+    let(:connect_webview_hash) { {connect_webview_id: "123"} }
 
     before do
       stub_seam_request(
-        :post, "/connect_webviews/create", { connect_webview: connect_webview_hash }
+        :post, "/connect_webviews/create", {connect_webview: connect_webview_hash}
       ).with do |req|
-        req.body.source == { accepted_providers: accepted_providers }.to_json
+        req.body.source == {accepted_providers: accepted_providers}.to_json
       end
     end
 
