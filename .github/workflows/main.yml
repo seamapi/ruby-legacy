@@ -13,7 +13,8 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - '2.6.5'
+          - '2.6'
+          - '2.7'
           - '3.0'
           - '3.1'
     steps:
@@ -28,17 +29,10 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    strategy:
-      matrix:
-        ruby:
-          - '3.0'
-          - '3.1'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup
         uses: ./.github/actions/setup
-        with:
-          ruby_version: ${{ matrix.ruby }}
       - name: Lint
         run: bundle exec rake lint
