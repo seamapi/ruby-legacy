@@ -34,7 +34,7 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
       - name: Cut ${{ github.event.inputs.version }}${{ github.event.client_payload.version }} version
-        run: bundle exec gem bump --no-commit --version ${{ github.event.inputs.version }}${{ github.event.client_payload.version }}
+        run: bundle exec gem bump --no-commit --file lib/seam/version.rb --version ${{ github.event.inputs.version }}${{ github.event.client_payload.version }}
       - name: Update Gemfile.lock
         run: |
           bundle config set --local deployment 'false'
