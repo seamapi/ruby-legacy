@@ -22,8 +22,6 @@ require_relative "seam/resources/access_code"
 require_relative "seam/resources/action_attempt"
 require_relative "seam/resources/connect_webview"
 require_relative "seam/resources/connected_account"
-require_relative "seam/resources/warning"
-require_relative "seam/resources/seam_error"
 require_relative "seam/resources/workspace"
 
 module Seam
