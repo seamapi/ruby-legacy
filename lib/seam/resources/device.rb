@@ -2,7 +2,7 @@
 
 module Seam
   class Device < BaseResource
-    attr_accessor :device_id, :device_type, :properties
+    attr_accessor :device_id, :device_type, :properties, :errors, :warnings
 
     date_accessor :created_at
 
