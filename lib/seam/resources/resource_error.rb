@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Seam
-  class SeamError < BaseResource
+  class ResourceError < BaseResource
     attr_accessor :error_code, :message
   end
 end
