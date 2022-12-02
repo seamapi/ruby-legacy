@@ -24,10 +24,15 @@ RSpec.describe Seam::Clients::AccessCodes do
   describe "#get" do
     let(:access_code_id) { "access_code_id_1234" }
     let(:access_code_hash) { {access_code_id: access_code_id} }
+    let(:delay_in_setting_warning) { {warning_code: "delay_in_setting_on_device", message: "Delay in setting access code"} }
+    let(:failed_to_set_error) { {error_code: "failed_to_set_on_device", message: "Failed to set access code"} }
 
     before do
       stub_seam_request(
-        :get, "/access_codes/get", {access_code: access_code_hash}
+        :get, "/access_codes/get", {access_code: access_code_hash.merge(
+          errors: [failed_to_set_error],
+          warnings: [delay_in_setting_warning]
+        )}
       ).with(
         query: {access_code_id: access_code_id}
       )
@@ -37,6 +42,14 @@ RSpec.describe Seam::Clients::AccessCodes do
 
     it "returns a Device" do
       expect(result).to be_a(Seam::AccessCode)
+    end
+
+    it "returns access code errors" do
+      expect(result.errors.first.error_code).to eq("failed_to_set_on_device")
+    end
+
+    it "returns access code warnings" do
+      expect(result.warnings.first.warning_code).to eq("delay_in_setting_on_device")
     end
   end
 

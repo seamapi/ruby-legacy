@@ -9,7 +9,9 @@ module Seam
       @client = client
 
       @data.each do |key, value|
-        instance_variable_set("@#{key}", value)
+        if key != "errors" && key != "warnings"
+          instance_variable_set("@#{key}", value)
+        end
       end
     end
 
