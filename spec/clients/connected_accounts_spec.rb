@@ -40,6 +40,32 @@ RSpec.describe Seam::Clients::ConnectedAccounts do
         expect(result).to be_a(Seam::ConnectedAccount)
       end
     end
+
+    context "with errors and warnings" do
+      let(:account_disconnected_error) { {error_code: "account_disconnected", message: "Account was disconnected"} }
+      let(:limit_reached_warning) { {warning_code: "limit_reached", message: "Account reached its limit"} }
+
+      before do
+        stub_seam_request(
+          :get, "/connected_accounts/get", {connected_account: connected_account_hash.merge(
+            errors: [account_disconnected_error],
+            warnings: [limit_reached_warning]
+          )}
+        ).with(
+          query: {connected_account_id: connected_account_id}
+        )
+      end
+
+      let(:result) { client.connected_accounts.get(connected_account_id) }
+
+      it "returns errors on connected account" do
+        expect(result.errors.first.error_code).to eq("account_disconnected")
+      end
+
+      it "returns warnings on connected account" do
+        expect(result.warnings.first.warning_code).to eq("limit_reached")
+      end
+    end
   end
 
   describe "#list" do

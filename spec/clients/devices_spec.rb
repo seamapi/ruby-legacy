@@ -22,6 +22,21 @@ RSpec.describe Seam::Clients::Devices do
   describe "#get" do
     let(:device_id) { "device_id_1234" }
     let(:device_hash) { {device_id: device_id} }
+
+    before do
+      stub_seam_request(:get, "/devices/get", {device: device_hash}).with(query: {device_id: device_id})
+    end
+
+    let(:result) { client.devices.get(device_id) }
+
+    it "returns a Device" do
+      expect(result).to be_a(Seam::Device)
+    end
+  end
+
+  describe "#get with errors" do
+    let(:device_id) { "device_id_1234" }
+    let(:device_hash) { {device_id: device_id} }
     let(:device_removed_error) { {error_code: "device_removed", message: "Device was removed"} }
     let(:device_privacy_warning) { {warning_code: "privacy_mode", message: "Device is in privacy mode"} }
 

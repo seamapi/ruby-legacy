@@ -5,5 +5,8 @@ module Seam
     attr_accessor :connected_account_id, :user_identifier, :account_type
 
     date_accessor :created_at
+
+    include Seam::ResourceErrorsSupport
+    include Seam::ResourceWarningsSupport
   end
 end
