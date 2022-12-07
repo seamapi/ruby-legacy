@@ -44,6 +44,10 @@ module Seam
       @workspaces ||= Seam::Clients::Workspaces.new(self)
     end
 
+    def events
+      @events ||= Seam::Clients::Events.new(self)
+    end
+
     def request_seam_object(method, path, klass, inner_object, config = {})
       response = request_seam(method, path, config)
 
