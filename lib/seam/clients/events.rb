@@ -16,7 +16,7 @@ module Seam
       def list(since: str, event_type: nil, event_types: nil, device_id: nil, device_ids: nil)
         request_seam_object(
           :get,
-          '/events/get',
+          '/events/list',
           Seam::Event,
           'events',
           params: { event_type: event_type, event_types: event_types, device_id: device_id,
