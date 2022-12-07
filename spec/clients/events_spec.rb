@@ -18,5 +18,4 @@ RSpec.describe Seam::Clients::Locks do
       expect(events.first.event_id).to be_a(String)
     end
   end
-
 end
