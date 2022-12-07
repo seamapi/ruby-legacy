@@ -16,7 +16,7 @@ This library includes:
 
 - A predefined set of classes for API resources that
   initialize themselves dynamically from API responses.
-- Methods for all [Seam API endpoints].
+- Methods for all [Seam API endpoints](https://docs.seam.co/latest/api-clients/overview).
 - Simplified asynchronous flows, e.g., listening for events or actions to finish.
 
 [Seam API endpoints]: https://docs.seam.co/latest/api-endpoints/overview
