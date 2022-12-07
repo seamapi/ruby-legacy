@@ -7,7 +7,7 @@ RSpec.describe Seam::Clients::Events do
     let(:event_hash) { {event_id: "1234"} }
 
     before do
-      stub_seam_request(:get, "/events/list", {events: [event_hash]})
+      stub_seam_request(:get, "/events/list?since=asd", {events: [event_hash]})
     end
 
     let(:events) { client.events.list(since: "asd") }
