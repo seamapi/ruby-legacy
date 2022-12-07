@@ -12,6 +12,7 @@ require_relative "seam/clients/connect_webviews"
 require_relative "seam/clients/connected_accounts"
 require_relative "seam/clients/access_codes"
 require_relative "seam/clients/action_attempts"
+require_relative "seam/clients/events"
 require_relative "seam/resources/base_resource"
 require_relative "seam/resources/resource_warning"
 require_relative "seam/resources/resource_error"
@@ -23,6 +24,7 @@ require_relative "seam/resources/action_attempt"
 require_relative "seam/resources/connect_webview"
 require_relative "seam/resources/connected_account"
 require_relative "seam/resources/workspace"
+require_relative "seam/resources/event"
 
 module Seam
 end
