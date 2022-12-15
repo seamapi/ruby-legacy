@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.bindir = "bin"
   spec.executables = spec.files.grep(%r{\A#{spec.bindir}/}) { |f| File.basename(f) }
 
-  spec.files = Dir["lib/**/*{[!_spec]}.rb"]
+  spec.files = Dir["lib/**/*.rb"]
   spec.files += Dir["[A-Z]*"]
 
   spec.add_dependency "http", "~> 5.0.0"
