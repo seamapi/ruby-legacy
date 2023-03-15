@@ -22,6 +22,16 @@ module Seam
           params: {device_id: device_id}
         )
       end
+
+      def list_device_providers(params = {})
+        request_seam_object(
+          :get,
+          "/devices/list_device_providers",
+          Seam::DeviceProvider,
+          "device_providers",
+          params: params
+        )
+      end
     end
   end
 end
