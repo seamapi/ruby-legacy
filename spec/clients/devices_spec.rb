@@ -64,21 +64,25 @@ RSpec.describe Seam::Clients::Devices do
     end
   end
 
-  let(:device_provider_hash) {{
-    device_provider_name: "august",
-    display_name: "August",
-    provider_categories: ["stable"]
-  }}
-  let(:stable_device_provider_hash) {{
-    device_provider_name: "akuvox",
-    display_name: "Akuvox",
-    provider_categories: []
-  }}
+  let(:device_provider_hash) {
+    {
+      device_provider_name: "august",
+      display_name: "August",
+      provider_categories: ["stable"]
+    }
+  }
+  let(:stable_device_provider_hash) {
+    {
+      device_provider_name: "akuvox",
+      display_name: "Akuvox",
+      provider_categories: []
+    }
+  }
 
   describe "#list_device_providers" do
     before do
-      stub_seam_request(:get, "/devices/list_device_providers", 
-      {device_providers: [device_provider_hash, stable_device_provider_hash]})
+      stub_seam_request(:get, "/devices/list_device_providers",
+        {device_providers: [device_provider_hash, stable_device_provider_hash]})
     end
 
     let(:devices) { client.devices.list_device_providers }
@@ -96,12 +100,12 @@ RSpec.describe Seam::Clients::Devices do
 
   describe "#list_device_providers (provider_category=stable)" do
     before do
-      stub_seam_request(:get, "/devices/list_device_providers", 
-      {device_providers: [stable_device_provider_hash]})
-      .with(query: { provider_category: "stable" })
+      stub_seam_request(:get, "/devices/list_device_providers",
+        {device_providers: [stable_device_provider_hash]})
+        .with(query: {provider_category: "stable"})
     end
 
-    let(:devices) { client.devices.list_device_providers({ provider_category: "stable" }) }
+    let(:devices) { client.devices.list_device_providers({provider_category: "stable"}) }
 
     it "returns a list of stable Device Providers" do
       expect(devices).to be_a(Array)
