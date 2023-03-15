@@ -3,7 +3,6 @@
 module Seam
   module Clients
     class DeviceProviders < BaseClient
-
       def list(params = {})
         request_seam_object(
           :get,
@@ -13,7 +12,6 @@ module Seam
           params: params
         )
       end
-     
     end
   end
 end
