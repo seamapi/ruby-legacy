@@ -24,6 +24,10 @@ module Seam
       @devices ||= Seam::Clients::Devices.new(self)
     end
 
+    def device_providers
+      @device_providers ||= Seam::Clients::DeviceProviders.new(self)
+    end
+
     def action_attempts
       @action_attempts ||= Seam::Clients::ActionAttempts.new(self)
     end
