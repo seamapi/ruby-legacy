@@ -81,16 +81,15 @@ RSpec.describe Seam::Clients::Devices do
       {device_providers: [device_provider_hash, stable_device_provider_hash]})
     end
 
-    let(:devices) { client.devices.list_device_providers }
+    let(:device_providers) { client.devices.list_device_providers }
 
     it "returns a list of stable Device Providers" do
-      expect(devices).to be_a(Array)
-      expect(devices.length).to eq(2)
-
-      expect(devices.first).to be_a(Seam::DeviceProvider)
-      expect(devices.first.device_provider_name).to be_a(String)
-      expect(devices.first.display_name).to be_a(String)
-      expect(devices.first.provider_categories).to be_a(Array)
+      expect(device_providers).to be_a(Array)
+      expect(device_providers.length).to eq(2)
+      expect(device_providers.first).to be_a(Seam::DeviceProvider)
+      expect(device_providers.first.device_provider_name).to be_a(String)
+      expect(device_providers.first.display_name).to be_a(String)
+      expect(device_providers.first.provider_categories).to be_a(Array)
     end
   end
 
@@ -101,16 +100,16 @@ RSpec.describe Seam::Clients::Devices do
       .with(query: { provider_category: "stable" })
     end
 
-    let(:devices) { client.devices.list_device_providers({ provider_category: "stable" }) }
+    let(:device_providers) { client.devices.list_device_providers({ provider_category: "stable" }) }
 
     it "returns a list of stable Device Providers" do
-      expect(devices).to be_a(Array)
-      expect(devices.length).to eq(1)
+      expect(device_providers).to be_a(Array)
+      expect(device_providers.length).to eq(1)
 
-      expect(devices.first).to be_a(Seam::DeviceProvider)
-      expect(devices.first.device_provider_name).to be_a(String)
-      expect(devices.first.display_name).to be_a(String)
-      expect(devices.first.provider_categories).to be_a(Array)
+      expect(device_providers.first).to be_a(Seam::DeviceProvider)
+      expect(device_providers.first.device_provider_name).to be_a(String)
+      expect(device_providers.first.display_name).to be_a(String)
+      expect(device_providers.first.provider_categories).to be_a(Array)
     end
   end
 end
