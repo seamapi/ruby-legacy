@@ -104,7 +104,7 @@ RSpec.describe Seam::Clients::Devices do
         .with(query: {provider_category: "stable"})
     end
 
-    let(:device_providers) { client.devices.list_device_providers({ provider_category: "stable" }) }
+    let(:device_providers) { client.devices.list_device_providers({provider_category: "stable"}) }
 
     it "returns a list of stable Device Providers" do
       expect(device_providers).to be_a(Array)
