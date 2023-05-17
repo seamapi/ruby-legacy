@@ -24,17 +24,17 @@ module Seam
       end
 
       def update(device_id: nil, is_managed: nil, name: nil, properties: nil)
-          request_seam(
-            :patch,
-            "/devices/update",
-            body: {
-              device_id: device_id,
-              is_managed: is_managed,
-              name: name,
-              properties: properties
-            }.compact
-          )
-        end
+        request_seam(
+          :patch,
+          "/devices/update",
+          body: {
+            device_id: device_id,
+            is_managed: is_managed,
+            name: name,
+            properties: properties
+          }.compact
+        )
+      end
 
       def list_device_providers(params = {})
         request_seam_object(
