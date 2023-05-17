@@ -120,15 +120,15 @@ RSpec.describe Seam::Clients::Devices do
   describe "#update device" do
     let(:device_id) { "device_id_1234" }
     let(:name) { "New Device Name" }
-  
+
     before do
-      stub_seam_request(:patch, "/devices/update", { ok: true })
-        .with do |req| 
+      stub_seam_request(:patch, "/devices/update", {ok: true})
+        .with do |req|
           req.body.source == {device_id: device_id, name: name}.to_json
         end
     end
-  
-    let(:response) {client.devices.update(device_id: device_id, name: name)}
+
+    let(:response) { client.devices.update(device_id: device_id, name: name) }
 
     it "returns success" do
       expect(response).to eq({"ok" => true})
