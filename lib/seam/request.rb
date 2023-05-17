@@ -7,6 +7,8 @@ module Seam
     attr_reader :base_uri, :api_key, :debug
 
     class Error < StandardError
+      attr_reader :status, :response
+
       def initialize(message, status, response)
         super(message)
         @status = status
