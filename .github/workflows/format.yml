@@ -2,8 +2,8 @@
 name: format
 
 on:
-  pull_request:
-    branches:
+  push:
+    branches-ignore:
       - main
   workflow_dispatch: {}
   repository_dispatch:
