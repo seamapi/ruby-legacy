@@ -3,8 +3,8 @@ name: format
 
 on:
   push:
-    branches:
-      - '**'
+    branches-ignore:
+      - main
   workflow_dispatch: {}
   repository_dispatch:
     types:
