@@ -41,17 +41,32 @@ RSpec.describe Seam::Clients::ConnectWebviews do
 
   describe "#create" do
     let(:accepted_providers) { %w[facebook google] }
+    let(:custom_redirect_url) { "http://localhost:3000/success" }
+    let(:custom_redirect_failure_url) { "http://localhost:3000/failure" }
+    let(:device_selection_mode) { "multiple" }
     let(:connect_webview_hash) { {connect_webview_id: "123"} }
 
     before do
       stub_seam_request(
         :post, "/connect_webviews/create", {connect_webview: connect_webview_hash}
       ).with do |req|
-        req.body.source == {accepted_providers: accepted_providers}.to_json
+        req.body.source == {
+          accepted_providers: accepted_providers,
+          custom_redirect_url: custom_redirect_url,
+          custom_redirect_failure_url: custom_redirect_failure_url,
+          device_selection_mode: device_selection_mode
+        }.to_json
       end
     end
 
-    let(:result) { client.connect_webviews.create(accepted_providers: accepted_providers) }
+    let(:result) do
+      client.connect_webviews.create(
+        accepted_providers: accepted_providers,
+        custom_redirect_url: custom_redirect_url,
+        custom_redirect_failure_url: custom_redirect_failure_url,
+        device_selection_mode: device_selection_mode
+      )
+    end
 
     it "returns a ConnectWebview" do
       expect(result).to be_a(Seam::ConnectWebview)
