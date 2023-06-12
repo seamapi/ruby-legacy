@@ -24,6 +24,10 @@ module Seam
       @devices ||= Seam::Clients::Devices.new(self)
     end
 
+    def unmanaged_devices
+      @unmanaged_devices ||= Seam::Clients::UnmanagedDevices.new(self)
+    end
+
     def action_attempts
       @action_attempts ||= Seam::Clients::ActionAttempts.new(self)
     end
