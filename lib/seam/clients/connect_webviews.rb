@@ -23,13 +23,25 @@ module Seam
         )
       end
 
-      def create(accepted_providers: nil)
+      def create(
+        accepted_providers: nil,
+        custom_redirect_url: nil,
+        custom_redirect_failure_url: nil,
+        device_selection_mode: nil,
+        provider_category: nil
+      )
         request_seam_object(
           :post,
           "/connect_webviews/create",
           Seam::ConnectWebview,
           "connect_webview",
-          body: {accepted_providers: accepted_providers}
+          body: {
+            accepted_providers: accepted_providers,
+            custom_redirect_url: custom_redirect_url,
+            custom_redirect_failure_url: custom_redirect_failure_url,
+            device_selection_mode: device_selection_mode,
+            provider_category: provider_category
+          }.compact
         )
       end
     end
