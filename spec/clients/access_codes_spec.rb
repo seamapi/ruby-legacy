@@ -81,7 +81,7 @@ RSpec.describe Seam::Clients::AccessCodes do
 
     before do
       stub_seam_request(
-        :put,
+        :patch,
         "/access_codes/update",
         {
           action_attempt: {
