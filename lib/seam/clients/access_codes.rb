@@ -52,7 +52,7 @@ module Seam
 
       def update(access_code_id: nil, name: nil, code: nil, starts_at: nil, ends_at: nil)
         action_attempt = request_seam_object(
-          :post,
+          :put,
           "/access_codes/update",
           Seam::ActionAttempt,
           "action_attempt",

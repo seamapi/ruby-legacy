@@ -75,6 +75,31 @@ RSpec.describe Seam::Clients::AccessCodes do
     end
   end
 
+  describe "#update" do
+    let(:access_code_id) { "access_code_id_1234" }
+    let(:name) { "New access code name" }
+
+    before do
+      stub_seam_request(
+        :put,
+        "/access_codes/update",
+        {
+          action_attempt: {
+            status: "success"
+          }
+        }
+      ).with do |req|
+        req.body.source == {access_code_id: access_code_id, name: name}.to_json
+      end
+    end
+
+    let(:result) { client.access_codes.update(access_code_id: access_code_id, name: name) }
+
+    it "returns success" do
+      expect(result).to be_a(Seam::ActionAttempt)
+    end
+  end
+
   describe "#delete" do
     let(:access_code_id) { "access_code_1234" }
     let(:action_attempt_hash) { {action_attempt_id: "1234", status: "pending"} }
