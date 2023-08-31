@@ -27,6 +27,7 @@ module Seam
         accepted_providers: nil,
         custom_redirect_url: nil,
         custom_redirect_failure_url: nil,
+        automatically_manage_new_devices: nil,
         device_selection_mode: nil,
         provider_category: nil
       )
@@ -39,6 +40,7 @@ module Seam
             accepted_providers: accepted_providers,
             custom_redirect_url: custom_redirect_url,
             custom_redirect_failure_url: custom_redirect_failure_url,
+            automatically_manage_new_devices: automatically_manage_new_devices,
             device_selection_mode: device_selection_mode,
             provider_category: provider_category
           }.compact

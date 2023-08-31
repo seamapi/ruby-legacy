@@ -43,6 +43,7 @@ RSpec.describe Seam::Clients::ConnectWebviews do
     let(:accepted_providers) { %w[facebook google] }
     let(:custom_redirect_url) { "http://localhost:3000/success" }
     let(:custom_redirect_failure_url) { "http://localhost:3000/failure" }
+    let(:automatically_manage_new_devices) { false }
     let(:device_selection_mode) { "multiple" }
     let(:connect_webview_hash) { {connect_webview_id: "123"} }
 
@@ -54,6 +55,7 @@ RSpec.describe Seam::Clients::ConnectWebviews do
           accepted_providers: accepted_providers,
           custom_redirect_url: custom_redirect_url,
           custom_redirect_failure_url: custom_redirect_failure_url,
+          automatically_manage_new_devices: automatically_manage_new_devices,
           device_selection_mode: device_selection_mode
         }.to_json
       end
@@ -64,6 +66,7 @@ RSpec.describe Seam::Clients::ConnectWebviews do
         accepted_providers: accepted_providers,
         custom_redirect_url: custom_redirect_url,
         custom_redirect_failure_url: custom_redirect_failure_url,
+        automatically_manage_new_devices: automatically_manage_new_devices,
         device_selection_mode: device_selection_mode
       )
     end
