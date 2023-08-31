@@ -44,7 +44,7 @@ module Seam
       msg = "Api Error #{response.status.code} #{method} #{uri}"
       code = response.status.code
 
-      if code == 400 && (err = response.parse["error"])
+      if code >= 400 && code < 500 && (err = response.parse["error"])
         msg = "Api Error #{err["type"]}\nrequest_id: #{err["request_id"]}\n#{err["message"]}"
       end
 
