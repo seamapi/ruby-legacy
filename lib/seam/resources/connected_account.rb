@@ -2,7 +2,7 @@
 
 module Seam
   class ConnectedAccount < BaseResource
-    attr_accessor :connected_account_id, :user_identifier, :account_type
+    attr_accessor :connected_account_id, :user_identifier, :account_type, :custom_metadata
 
     date_accessor :created_at
 
