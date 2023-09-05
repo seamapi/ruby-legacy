@@ -13,13 +13,13 @@ module Seam
         )
       end
 
-      def get(device_id: nil, name: nil)
+      def get(device_id)
         request_seam_object(
           :get,
           "/devices/get",
           Seam::Device,
           "device",
-          params: {device_id: device_id, name: name}.compact
+          params: {device_id: device_id}
         )
       end
 
