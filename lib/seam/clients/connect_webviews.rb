@@ -30,7 +30,8 @@ module Seam
         custom_metadata: nil,
         automatically_manage_new_devices: nil,
         device_selection_mode: nil,
-        provider_category: nil
+        provider_category: nil,
+        wait_for_device_creation: nil
       )
         request_seam_object(
           :post,
@@ -44,7 +45,8 @@ module Seam
             automatically_manage_new_devices: automatically_manage_new_devices,
             device_selection_mode: device_selection_mode,
             custom_metadata: custom_metadata,
-            provider_category: provider_category
+            provider_category: provider_category,
+            wait_for_device_creation: wait_for_device_creation
           }.compact
         )
       end
