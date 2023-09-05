@@ -3,7 +3,7 @@
 module Seam
   class Device < BaseResource
     attr_accessor :device_id, :device_type, :properties, :connected_account_id, :workspace_id, :capabilities_supported,
-                  :is_managed
+      :is_managed
 
     date_accessor :created_at
 
