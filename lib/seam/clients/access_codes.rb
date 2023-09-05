@@ -3,7 +3,9 @@
 module Seam
   module Clients
     class AccessCodes < BaseClient
-      def get(access_code_id)
+      def get(access_code_or_id)
+        access_code_id = access_code_or_id.is_a?(Seam::AccessCode) ? access_code_or_id.access_code_id : access_code_or_id
+
         request_seam_object(
           :get,
           "/access_codes/get",
@@ -31,7 +33,8 @@ module Seam
           "/access_codes/create",
           Seam::ActionAttempt,
           "action_attempt",
-          body: {device_id: device_id, code: code, starts_at: starts_at, ends_at: ends_at, name: name, use_backup_access_code_pool: use_backup_access_code_pool}.compact
+          body: {device_id: device_id, code: code, starts_at: starts_at, ends_at: ends_at, name: name,
+                 use_backup_access_code_pool: use_backup_access_code_pool}.compact
         )
         action_attempt.wait_until_finished
         # TODO: check if failed
@@ -66,6 +69,18 @@ module Seam
         )
         action_attempt.wait_until_finished
         action_attempt
+      end
+
+      def pull_backup_access_code(access_code_or_id)
+        access_code_id = access_code_or_id.is_a?(Seam::AccessCode) ? access_code_or_id.access_code_id : access_code_or_id
+
+        request_seam_object(
+          :post,
+          "/access_codes/pull_backup_access_code",
+          Seam::AccessCode,
+          "backup_access_code",
+          body: {access_code_id: access_code_id}
+        )
       end
     end
   end
