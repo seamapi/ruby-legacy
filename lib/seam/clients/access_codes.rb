@@ -13,15 +13,15 @@ module Seam
         )
       end
 
-      def list(device_or_id)
+      def list(device_or_id = nil, access_code_ids: nil)
         device_id = device_or_id.is_a?(Seam::Device) ? device_or_id.device_id : device_or_id
 
         request_seam_object(
-          :get,
+          :post,
           "/access_codes/list",
           Seam::AccessCode,
           "access_codes",
-          params: {device_id: device_id}
+          body: {device_id: device_id, access_code_ids: access_code_ids}.compact
         )
       end
 
