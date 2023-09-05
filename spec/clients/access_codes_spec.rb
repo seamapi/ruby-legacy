@@ -126,4 +126,33 @@ RSpec.describe Seam::Clients::AccessCodes do
       expect(result).to be_a(Seam::ActionAttempt)
     end
   end
+
+  describe "#update" do
+    let(:access_code_id) { "access_code_1234" }
+    let(:action_attempt_hash) { {action_attempt_id: "1234", status: "pending"} }
+
+    before do
+      stub_seam_request(
+        :post, "/access_codes/update", {action_attempt: action_attempt_hash}
+      ).with do |req|
+        req.body.source == {access_code_id: access_code_id, type: "ongoing"}.to_json
+      end
+
+      stub_seam_request(
+        :get,
+        "/action_attempts/get",
+        {
+          action_attempt: {
+            status: "success"
+          }
+        }
+      ).with(query: {action_attempt_id: action_attempt_hash[:action_attempt_id]})
+    end
+
+    let(:result) { client.access_codes.update(access_code_id: access_code_id, type: "ongoing") }
+
+    it "returns an Access Code" do
+      expect(result).to be_a(Seam::ActionAttempt)
+    end
+  end
 end
