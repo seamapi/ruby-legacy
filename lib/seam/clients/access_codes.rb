@@ -3,9 +3,7 @@
 module Seam
   module Clients
     class AccessCodes < BaseClient
-      def get(access_code_or_id)
-        access_code_id = access_code_or_id.is_a?(Seam::AccessCode) ? access_code_or_id.access_code_id : access_code_or_id
-
+      def get(access_code_id)
         request_seam_object(
           :get,
           "/access_codes/get",
@@ -71,9 +69,7 @@ module Seam
         action_attempt
       end
 
-      def pull_backup_access_code(access_code_or_id)
-        access_code_id = access_code_or_id.is_a?(Seam::AccessCode) ? access_code_or_id.access_code_id : access_code_or_id
-
+      def pull_backup_access_code(access_code_id)
         request_seam_object(
           :post,
           "/access_codes/pull_backup_access_code",
