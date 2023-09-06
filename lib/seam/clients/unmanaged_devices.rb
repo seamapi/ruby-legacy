@@ -3,6 +3,19 @@
 module Seam
   module Clients
     class UnmanagedDevices < BaseClient
+      def get(device_id = nil, name: nil)
+        request_seam_object(
+          :get,
+          "/devices/unmanaged/get",
+          Seam::UnmanagedDevice,
+          "device",
+          params: {
+            device_id: device_id,
+            name: name
+          }.compact
+        )
+      end
+
       def list(params = {})
         request_seam_object(
           :get,
