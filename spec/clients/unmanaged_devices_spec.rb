@@ -3,6 +3,46 @@
 RSpec.describe Seam::Clients::UnmanagedDevices do
   let(:client) { Seam::Client.new(api_key: "some_api_key") }
 
+  describe "#get" do
+    context "'device_id' param" do
+      let(:device_id) { "123" }
+      let(:device_hash) { {device_id: device_id} }
+
+      before do
+        stub_seam_request(
+          :get, "/devices/unmanaged/get", {device: device_hash}
+        ).with(
+          query: {device_id: device_id}
+        )
+      end
+
+      let(:result) { client.unmanaged_devices.get(device_id) }
+
+      it "returns an unmanaged Device" do
+        expect(result).to be_a(Seam::UnmanagedDevice)
+      end
+    end
+
+    context "'name' param" do
+      let(:name) { "name 123" }
+      let(:device_hash) { {name: name} }
+
+      before do
+        stub_seam_request(
+          :get, "/devices/unmanaged/get", {device: device_hash}
+        ).with(
+          query: {name: name}
+        )
+      end
+
+      let(:result) { client.unmanaged_devices.get(name: name) }
+
+      it "returns an unmanaged Device" do
+        expect(result).to be_a(Seam::UnmanagedDevice)
+      end
+    end
+  end
+
   describe "#list" do
     let(:device_hash) { {device_id: "123"} }
 
