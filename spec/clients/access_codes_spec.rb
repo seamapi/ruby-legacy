@@ -4,20 +4,43 @@ RSpec.describe Seam::Clients::AccessCodes do
   let(:client) { Seam::Client.new(api_key: "some_api_key") }
 
   describe "#list" do
-    let(:access_code_hash) { {access_code_id: "123"} }
-    let(:device_id) { "device_id_1234" }
+    let(:access_code_id) { "123" }
+    let(:access_code_hash) { {access_code_id: access_code_id} }
 
-    before do
-      stub_seam_request(:get, "/access_codes/list",
-        {access_codes: [access_code_hash]}).with(query: {device_id: device_id})
+    context "'device_id' param" do
+      let(:device_id) { "device_id_1234" }
+
+      before do
+        stub_seam_request(:post, "/access_codes/list",
+          {access_codes: [access_code_hash]}).with do |req|
+          req.body.source == {device_id: device_id}.to_json
+        end
+      end
+
+      let(:access_codes) { client.access_codes.list(device_id) }
+
+      it "returns a list of Access codes" do
+        expect(access_codes).to be_a(Array)
+        expect(access_codes.first).to be_a(Seam::AccessCode)
+        expect(access_codes.first.access_code_id).to be_a(String)
+      end
     end
 
-    let(:access_codes) { client.access_codes.list(device_id) }
+    context "'access_code_ids' param" do
+      before do
+        stub_seam_request(:post, "/access_codes/list",
+          {access_codes: [access_code_hash]}).with do |req|
+            req.body.source == {access_code_ids: [access_code_id]}.to_json
+          end
+      end
 
-    it "returns a list of Devices" do
-      expect(access_codes).to be_a(Array)
-      expect(access_codes.first).to be_a(Seam::AccessCode)
-      expect(access_codes.first.access_code_id).to be_a(String)
+      let(:access_codes) { client.access_codes.list(access_code_ids: [access_code_id]) }
+
+      it "returns a list of Access codes" do
+        expect(access_codes).to be_a(Array)
+        expect(access_codes.first).to be_a(Seam::AccessCode)
+        expect(access_codes.first.access_code_id).to be_a(String)
+      end
     end
   end
 
@@ -98,6 +121,35 @@ RSpec.describe Seam::Clients::AccessCodes do
     end
 
     let(:result) { client.access_codes.delete(access_code_id) }
+
+    it "returns an Access Code" do
+      expect(result).to be_a(Seam::ActionAttempt)
+    end
+  end
+
+  describe "#update" do
+    let(:access_code_id) { "access_code_1234" }
+    let(:action_attempt_hash) { {action_attempt_id: "1234", status: "pending"} }
+
+    before do
+      stub_seam_request(
+        :post, "/access_codes/update", {action_attempt: action_attempt_hash}
+      ).with do |req|
+        req.body.source == {access_code_id: access_code_id, type: "ongoing"}.to_json
+      end
+
+      stub_seam_request(
+        :get,
+        "/action_attempts/get",
+        {
+          action_attempt: {
+            status: "success"
+          }
+        }
+      ).with(query: {action_attempt_id: action_attempt_hash[:action_attempt_id]})
+    end
+
+    let(:result) { client.access_codes.update(access_code_id: access_code_id, type: "ongoing") }
 
     it "returns an Access Code" do
       expect(result).to be_a(Seam::ActionAttempt)
