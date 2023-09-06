@@ -25,13 +25,14 @@ module Seam
         )
       end
 
-      def create(device_id: nil, name: nil, code: nil, starts_at: nil, ends_at: nil)
+      def create(device_id: nil, name: nil, code: nil, starts_at: nil, ends_at: nil, use_backup_access_code_pool: nil)
         action_attempt = request_seam_object(
           :post,
           "/access_codes/create",
           Seam::ActionAttempt,
           "action_attempt",
-          body: {device_id: device_id, code: code, starts_at: starts_at, ends_at: ends_at, name: name}.compact
+          body: {device_id: device_id, code: code, starts_at: starts_at, ends_at: ends_at, name: name,
+                 use_backup_access_code_pool: use_backup_access_code_pool}.compact
         )
         action_attempt.wait_until_finished
         # TODO: check if failed
@@ -67,6 +68,16 @@ module Seam
         )
         action_attempt.wait_until_finished
         action_attempt
+      end
+
+      def pull_backup_access_code(access_code_id)
+        request_seam_object(
+          :post,
+          "/access_codes/pull_backup_access_code",
+          Seam::AccessCode,
+          "backup_access_code",
+          body: {access_code_id: access_code_id}
+        )
       end
     end
   end

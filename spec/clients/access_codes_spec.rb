@@ -63,7 +63,7 @@ RSpec.describe Seam::Clients::AccessCodes do
 
     let(:result) { client.access_codes.get(access_code_id) }
 
-    it "returns a Device" do
+    it "returns an Access Code" do
       expect(result).to be_a(Seam::AccessCode)
     end
 
@@ -153,6 +153,25 @@ RSpec.describe Seam::Clients::AccessCodes do
 
     it "returns an Access Code" do
       expect(result).to be_a(Seam::ActionAttempt)
+    end
+  end
+
+  describe "#pull_backup_access_code" do
+    let(:access_code_id) { "access_code_id_1234" }
+    let(:access_code_hash) { {access_code_id: access_code_id, is_backup: true} }
+
+    before do
+      stub_seam_request(
+        :post, "/access_codes/pull_backup_access_code", {backup_access_code: access_code_hash}
+      ).with do |req|
+        req.body.source == {access_code_id: access_code_id}.to_json
+      end
+    end
+
+    let(:result) { client.access_codes.pull_backup_access_code(access_code_id) }
+
+    it "returns an backup Access Code" do
+      expect(result).to be_a(Seam::AccessCode)
     end
   end
 end
