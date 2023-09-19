@@ -36,6 +36,10 @@ module Seam
       @access_codes ||= Seam::Clients::AccessCodes.new(self)
     end
 
+    def unmanaged_access_codes
+      @unmanaged_access_codes ||= Seam::Clients::UnmanagedAccessCodes.new(self)
+    end
+
     def connect_webviews
       @connect_webviews ||= Seam::Clients::ConnectWebviews.new(self)
     end
