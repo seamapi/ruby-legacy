@@ -41,6 +41,20 @@ module Seam
         action_attempt.wait_until_finished
         action_attempt
       end
+
+      def delete(access_code_id)
+        action_attempt = request_seam_object(
+          :post,
+          "/access_codes/unmanaged/delete",
+          Seam::ActionAttempt,
+          "action_attempt",
+          body: {
+            access_code_id: access_code_id
+          }
+        )
+        action_attempt.wait_until_finished
+        action_attempt
+      end
     end
   end
 end
