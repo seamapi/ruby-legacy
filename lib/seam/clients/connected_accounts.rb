@@ -3,29 +3,29 @@
 module Seam
   module Clients
     class ConnectedAccounts < BaseClient
-      def get(connected_account_id_or_params)
-        params = if connected_account_id_or_params.is_a?(String)
-          {connected_account_id: connected_account_id_or_params}
+      def get(connected_account_id_or_body)
+        body = if connected_account_id_or_body.is_a?(String)
+          {connected_account_id: connected_account_id_or_body}
         else
-          connected_account_id_or_params
+          connected_account_id_or_body
         end
 
         request_seam_object(
-          :get,
+          :post,
           "/connected_accounts/get",
           Seam::ConnectedAccount,
           "connected_account",
-          params: params
+          body: body
         )
       end
 
-      def list(params = {})
+      def list(body = {})
         request_seam_object(
-          :get,
+          :post,
           "/connected_accounts/list",
           Seam::ConnectedAccount,
           "connected_accounts",
-          params: params
+          body: body
         )
       end
     end

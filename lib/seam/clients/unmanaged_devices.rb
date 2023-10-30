@@ -5,30 +5,30 @@ module Seam
     class UnmanagedDevices < BaseClient
       def get(device_id = nil, name: nil)
         request_seam_object(
-          :get,
+          :post,
           "/devices/unmanaged/get",
           Seam::UnmanagedDevice,
           "device",
-          params: {
+          body: {
             device_id: device_id,
             name: name
           }.compact
         )
       end
 
-      def list(params = {})
+      def list(body = {})
         request_seam_object(
-          :get,
+          :post,
           "/devices/unmanaged/list",
           Seam::UnmanagedDevice,
           "devices",
-          params: params
+          body: body
         )
       end
 
       def update(device_id: nil, is_managed: nil)
         request_seam(
-          :patch,
+          :post,
           "/devices/unmanaged/update",
           body: {
             device_id: device_id,

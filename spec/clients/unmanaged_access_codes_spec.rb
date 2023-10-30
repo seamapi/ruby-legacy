@@ -9,10 +9,8 @@ RSpec.describe Seam::Clients::UnmanagedAccessCodes do
 
     before do
       stub_seam_request(
-        :get, "/access_codes/unmanaged/get", {access_code: unmanaged_access_code_hash}
-      ).with(
-        query: {access_code_id: access_code_id}
-      )
+        :post, "/access_codes/unmanaged/get", {access_code: unmanaged_access_code_hash}
+      ).with { |req| req.body.source == {access_code_id: access_code_id}.to_json }
     end
 
     let(:result) { client.unmanaged_access_codes.get(access_code_id) }
@@ -27,9 +25,7 @@ RSpec.describe Seam::Clients::UnmanagedAccessCodes do
     let(:unmanaged_access_code_hash) { {access_code_id: "123", device_id: device_id} }
 
     before do
-      stub_seam_request(:get, "/access_codes/unmanaged/list", {access_codes: [unmanaged_access_code_hash]}).with(
-        query: {device_id: device_id}
-      )
+      stub_seam_request(:post, "/access_codes/unmanaged/list", {access_codes: [unmanaged_access_code_hash]}).with { |req| req.body.source == {device_id: device_id}.to_json }
     end
 
     let(:unmanaged_access_codes) { client.unmanaged_access_codes.list(device_id) }
@@ -53,14 +49,14 @@ RSpec.describe Seam::Clients::UnmanagedAccessCodes do
       end
 
       stub_seam_request(
-        :get,
+        :post,
         "/action_attempts/get",
         {
           action_attempt: {
             status: "success"
           }
         }
-      ).with(query: {action_attempt_id: action_attempt_hash[:action_attempt_id]})
+      ).with { |req| req.body.source == {action_attempt_id: action_attempt_hash[:action_attempt_id]}.to_json }
     end
 
     let(:result) { client.unmanaged_access_codes.convert_to_managed(access_code_id) }

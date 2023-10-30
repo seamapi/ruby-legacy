@@ -7,7 +7,7 @@ RSpec.describe Seam::Clients::Locks do
     let(:locks_hash) { {device_id: "123"} }
 
     before do
-      stub_seam_request(:get, "/locks/list", {locks: [locks_hash]})
+      stub_seam_request(:post, "/locks/list", {locks: [locks_hash]})
     end
 
     let(:devices) { client.locks.list }
@@ -24,7 +24,7 @@ RSpec.describe Seam::Clients::Locks do
     let(:locks_hash) { {device_id: device_id} }
 
     before do
-      stub_seam_request(:get, "/locks/get", {lock: locks_hash}).with(query: {device_id: device_id})
+      stub_seam_request(:post, "/locks/get", {lock: locks_hash}).with { |req| req.body.source == {device_id: device_id}.to_json }
     end
 
     let(:lock) { client.locks.get(device_id) }

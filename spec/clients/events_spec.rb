@@ -7,7 +7,7 @@ RSpec.describe Seam::Clients::Events do
     let(:event_hash) { {event_id: "1234"} }
 
     before do
-      stub_seam_request(:get, "/events/list", {events: [event_hash]}).with(query: {since: "asd"})
+      stub_seam_request(:post, "/events/list", {events: [event_hash]}).with { |req| req.body.source == {since: "asd"}.to_json }
     end
 
     let(:events) { client.events.list(since: "asd") }
@@ -24,7 +24,7 @@ RSpec.describe Seam::Clients::Events do
     let(:event_hash) { {event_id: event_id} }
 
     before do
-      stub_seam_request(:get, "/events/get", {event: event_hash}).with(query: {event_id: event_id})
+      stub_seam_request(:post, "/events/get", {event: event_hash}).with { |req| req.body.source == {event_id: event_id}.to_json }
     end
 
     let(:result) { client.events.get(event_id: event_id) }

@@ -52,13 +52,11 @@ RSpec.describe Seam::Clients::AccessCodes do
 
     before do
       stub_seam_request(
-        :get, "/access_codes/get", {access_code: access_code_hash.merge(
+        :post, "/access_codes/get", {access_code: access_code_hash.merge(
           errors: [failed_to_set_error],
           warnings: [delay_in_setting_warning]
         )}
-      ).with(
-        query: {access_code_id: access_code_id}
-      )
+      ).with { |req| req.body.source == {access_code_id: access_code_id}.to_json }
     end
 
     let(:result) { client.access_codes.get(access_code_id) }
@@ -86,9 +84,9 @@ RSpec.describe Seam::Clients::AccessCodes do
       )
 
       stub_seam_request(
-        :get, "/action_attempts/get", {action_attempt: {result: {access_code: access_code_hash},
-                                                        status: "success"}}
-      ).with(query: {action_attempt_id: action_attempt_hash[:action_attempt_id]})
+        :post, "/action_attempts/get", {action_attempt: {result: {access_code: access_code_hash},
+                                                         status: "success"}}
+      ).with { |req| req.body.source == {action_attempt_id: action_attempt_hash[:action_attempt_id]}.to_json }
     end
 
     let(:result) { client.access_codes.create(**access_code_hash) }
@@ -110,14 +108,14 @@ RSpec.describe Seam::Clients::AccessCodes do
       end
 
       stub_seam_request(
-        :get,
+        :post,
         "/action_attempts/get",
         {
           action_attempt: {
             status: "success"
           }
         }
-      ).with(query: {action_attempt_id: action_attempt_hash[:action_attempt_id]})
+      ).with { |req| req.body.source == {action_attempt_id: action_attempt_hash[:action_attempt_id]}.to_json }
     end
 
     let(:result) { client.access_codes.delete(access_code_id) }
@@ -139,14 +137,14 @@ RSpec.describe Seam::Clients::AccessCodes do
       end
 
       stub_seam_request(
-        :get,
+        :post,
         "/action_attempts/get",
         {
           action_attempt: {
             status: "success"
           }
         }
-      ).with(query: {action_attempt_id: action_attempt_hash[:action_attempt_id]})
+      ).with { |req| req.body.source == {action_attempt_id: action_attempt_hash[:action_attempt_id]}.to_json }
     end
 
     let(:result) { client.access_codes.update(access_code_id: access_code_id, type: "ongoing") }

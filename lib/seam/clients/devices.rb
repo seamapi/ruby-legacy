@@ -3,29 +3,29 @@
 module Seam
   module Clients
     class Devices < BaseClient
-      def list(params = {})
+      def list(body = {})
         request_seam_object(
-          :get,
+          :post,
           "/devices/list",
           Seam::Device,
           "devices",
-          params: params
+          body: body
         )
       end
 
       def get(device_id = nil, name: nil)
         request_seam_object(
-          :get,
+          :post,
           "/devices/get",
           Seam::Device,
           "device",
-          params: {device_id: device_id, name: name}.compact
+          body: {device_id: device_id, name: name}.compact
         )
       end
 
       def update(device_id: nil, is_managed: nil, name: nil, properties: nil)
         request_seam(
-          :patch,
+          :post,
           "/devices/update",
           body: {
             device_id: device_id,
@@ -36,13 +36,13 @@ module Seam
         )
       end
 
-      def list_device_providers(params = {})
+      def list_device_providers(body = {})
         request_seam_object(
-          :get,
+          :post,
           "/devices/list_device_providers",
           Seam::DeviceProvider,
           "device_providers",
-          params: params
+          body: body
         )
       end
     end
