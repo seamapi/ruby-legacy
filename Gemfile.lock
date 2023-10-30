@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    seamapi (1.14.0)
+    seamapi (1.15.0)
       http (~> 5.0.0)
 
 GEM
@@ -17,7 +17,7 @@ GEM
     docile (1.4.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    ffi (1.15.5)
+    ffi (1.16.3)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
