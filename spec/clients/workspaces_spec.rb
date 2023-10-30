@@ -7,7 +7,7 @@ RSpec.describe Seam::Clients::Workspaces do
     let(:workspace_hash) { {workspace_id: "123"} }
 
     before do
-      stub_seam_request(:get, "/workspaces/list", {workspaces: [workspace_hash]})
+      stub_seam_request(:post, "/workspaces/list", {workspaces: [workspace_hash]})
     end
 
     let(:workspaces) { client.workspaces.list }
@@ -25,10 +25,8 @@ RSpec.describe Seam::Clients::Workspaces do
 
     before do
       stub_seam_request(
-        :get, "/workspaces/get", {workspace: workspace_hash}
-      ).with(
-        query: {workspace_id: workspace_id}
-      )
+        :post, "/workspaces/get", {workspace: workspace_hash}
+      ).with { |req| req.body.source == {workspace_id: workspace_id}.to_json }
     end
 
     let(:result) { client.workspaces.get(workspace_id) }
@@ -44,9 +42,7 @@ RSpec.describe Seam::Clients::Workspaces do
     before do
       stub_seam_request(
         :post, "/workspaces/reset_sandbox", {message: "ok"}
-      ).with(
-        query: {workspace_id: workspace_id}
-      )
+      ).with { |req| req.body.source == {workspace_id: workspace_id}.to_json }
     end
 
     let(:result) { client.workspaces.reset_sandbox(workspace_id) }

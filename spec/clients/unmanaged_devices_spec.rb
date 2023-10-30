@@ -10,10 +10,8 @@ RSpec.describe Seam::Clients::UnmanagedDevices do
 
       before do
         stub_seam_request(
-          :get, "/devices/unmanaged/get", {device: device_hash}
-        ).with(
-          query: {device_id: device_id}
-        )
+          :post, "/devices/unmanaged/get", {device: device_hash}
+        ).with { |req| req.body.source == {device_id: device_id}.to_json }
       end
 
       let(:result) { client.unmanaged_devices.get(device_id) }
@@ -29,10 +27,8 @@ RSpec.describe Seam::Clients::UnmanagedDevices do
 
       before do
         stub_seam_request(
-          :get, "/devices/unmanaged/get", {device: device_hash}
-        ).with(
-          query: {name: name}
-        )
+          :post, "/devices/unmanaged/get", {device: device_hash}
+        ).with { |req| req.body.source == {name: name}.to_json }
       end
 
       let(:result) { client.unmanaged_devices.get(name: name) }
@@ -47,7 +43,7 @@ RSpec.describe Seam::Clients::UnmanagedDevices do
     let(:device_hash) { {device_id: "123"} }
 
     before do
-      stub_seam_request(:get, "/devices/unmanaged/list", {devices: [device_hash]})
+      stub_seam_request(:post, "/devices/unmanaged/list", {devices: [device_hash]})
     end
 
     let(:unmanaged_devices) { client.unmanaged_devices.list }
@@ -64,7 +60,7 @@ RSpec.describe Seam::Clients::UnmanagedDevices do
     let(:is_managed) { true }
 
     before do
-      stub_seam_request(:patch, "/devices/unmanaged/update", {ok: true})
+      stub_seam_request(:post, "/devices/unmanaged/update", {ok: true})
         .with do |req|
           req.body.source == {device_id: device_id, is_managed: is_managed}.to_json
         end

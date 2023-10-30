@@ -5,11 +5,11 @@ module Seam
     class UnmanagedAccessCodes < BaseClient
       def get(access_code_id = nil, device_id: nil, code: nil)
         request_seam_object(
-          :get,
+          :post,
           "/access_codes/unmanaged/get",
           Seam::UnmanagedAccessCode,
           "access_code",
-          params: {
+          body: {
             device_id: device_id,
             access_code_id: access_code_id,
             code: code
@@ -19,11 +19,11 @@ module Seam
 
       def list(device_id)
         request_seam_object(
-          :get,
+          :post,
           "/access_codes/unmanaged/list",
           Seam::UnmanagedAccessCode,
           "access_codes",
-          params: {device_id: device_id}
+          body: {device_id: device_id}
         )
       end
 

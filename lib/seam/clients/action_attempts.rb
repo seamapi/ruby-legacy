@@ -5,11 +5,11 @@ module Seam
     class ActionAttempts < BaseClient
       def get(action_attempt_id)
         request_seam_object(
-          :get,
+          :post,
           "/action_attempts/get",
           Seam::ActionAttempt,
           "action_attempt",
-          params: {action_attempt_id: action_attempt_id}
+          body: {action_attempt_id: action_attempt_id}
         )
       end
     end

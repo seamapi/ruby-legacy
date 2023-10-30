@@ -9,10 +9,8 @@ RSpec.describe Seam::Clients::AccessCodes do
 
     before do
       stub_seam_request(
-        :get, "/action_attempts/get", {action_attempt: action_attempt_hash}
-      ).with(
-        query: {action_attempt_id: action_attempt_id}
-      )
+        :post, "/action_attempts/get", {action_attempt: action_attempt_hash}
+      ).with { |req| req.body.source == {action_attempt_id: action_attempt_id}.to_json }
     end
 
     let(:result) { client.action_attempts.get(action_attempt_id) }

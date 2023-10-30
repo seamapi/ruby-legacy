@@ -5,21 +5,21 @@ module Seam
     class Workspaces < BaseClient
       def get(workspace_id = nil)
         request_seam_object(
-          :get,
+          :post,
           "/workspaces/get",
           Seam::Workspace,
           "workspace",
-          params: {workspace_id: workspace_id}
+          body: {workspace_id: workspace_id}
         )
       end
 
       def list
         request_seam_object(
-          :get,
+          :post,
           "/workspaces/list",
           Seam::Workspace,
           "workspaces",
-          params: {}
+          body: {}
         )
       end
 
@@ -27,7 +27,7 @@ module Seam
         request_seam(
           :post,
           "/workspaces/reset_sandbox",
-          params: {workspace_id: workspace_id}
+          body: {workspace_id: workspace_id}
         )
       end
     end
