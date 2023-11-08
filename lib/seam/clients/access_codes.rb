@@ -5,11 +5,11 @@ module Seam
     class AccessCodes < BaseClient
       def get(access_code_id)
         request_seam_object(
-          :get,
+          :post,
           "/access_codes/get",
           Seam::AccessCode,
           "access_code",
-          params: {access_code_id: access_code_id}
+          body: {access_code_id: access_code_id}
         )
       end
 

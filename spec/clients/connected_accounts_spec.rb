@@ -10,10 +10,8 @@ RSpec.describe Seam::Clients::ConnectedAccounts do
     context "with connected_account_id" do
       before do
         stub_seam_request(
-          :get, "/connected_accounts/get", {connected_account: connected_account_hash}
-        ).with(
-          query: {connected_account_id: connected_account_id}
-        )
+          :post, "/connected_accounts/get", {connected_account: connected_account_hash}
+        ).with { |req| req.body.source == {connected_account_id: connected_account_id}.to_json }
       end
 
       let(:result) { client.connected_accounts.get(connected_account_id) }
@@ -28,10 +26,8 @@ RSpec.describe Seam::Clients::ConnectedAccounts do
 
       before do
         stub_seam_request(
-          :get, "/connected_accounts/get", {connected_account: connected_account_hash}
-        ).with(
-          query: {email: email}
-        )
+          :post, "/connected_accounts/get", {connected_account: connected_account_hash}
+        ).with { |req| req.body.source == {email: email}.to_json }
       end
 
       let(:result) { client.connected_accounts.get(email: email) }
@@ -47,13 +43,11 @@ RSpec.describe Seam::Clients::ConnectedAccounts do
 
       before do
         stub_seam_request(
-          :get, "/connected_accounts/get", {connected_account: connected_account_hash.merge(
+          :post, "/connected_accounts/get", {connected_account: connected_account_hash.merge(
             errors: [account_disconnected_error],
             warnings: [limit_reached_warning]
           )}
-        ).with(
-          query: {connected_account_id: connected_account_id}
-        )
+        ).with { |req| req.body.source == {connected_account_id: connected_account_id}.to_json }
       end
 
       let(:result) { client.connected_accounts.get(connected_account_id) }
@@ -73,7 +67,7 @@ RSpec.describe Seam::Clients::ConnectedAccounts do
 
     before do
       stub_seam_request(
-        :get, "/connected_accounts/list", {connected_accounts: [connected_account_hash]}
+        :post, "/connected_accounts/list", {connected_accounts: [connected_account_hash]}
       )
     end
 

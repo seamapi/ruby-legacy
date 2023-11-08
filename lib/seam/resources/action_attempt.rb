@@ -19,9 +19,9 @@ module Seam
 
     def update!
       response = @client.request_seam(
-        :get,
+        :post,
         "/action_attempts/get",
-        params: {
+        body: {
           action_attempt_id: action_attempt_id
         }
       )
