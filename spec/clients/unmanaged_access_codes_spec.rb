@@ -26,7 +26,7 @@ RSpec.describe Seam::Clients::UnmanagedAccessCodes do
 
     before do
       stub_seam_request(:post, "/access_codes/unmanaged/list",
-                        {access_codes: [unmanaged_access_code_hash]}).with do |req|
+        {access_codes: [unmanaged_access_code_hash]}).with do |req|
         req.body.source == {device_id: device_id}.to_json
       end
     end
