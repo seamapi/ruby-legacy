@@ -48,7 +48,7 @@ _Refer to the [Seam Connect API documentation][Seam Connect API]._
 seam = Seam::Client.new(api_key: "MY_SEAM_API_KEY")
 devices = seam.devices.list
 my_door = devices.first
-seam.locks.unlock(my_door).wait_until_finished
+seam.locks.unlock_door(my_door).wait_until_finished
 ```
 
 ## Development and Testing
