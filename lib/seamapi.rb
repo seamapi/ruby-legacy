@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+puts "The seamapi gem has been moved to seam. \n Please refer to the migration guide at https://github.com/seamapi/ruby/releases/tag/v2.0.0")
+
 require_relative "seam/version"
 require_relative "seam/request"
 require_relative "seam/logger"
