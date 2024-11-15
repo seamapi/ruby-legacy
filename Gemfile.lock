@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    seamapi (1.17.0)
+    seamapi (2.0.0)
       http (~> 5.0)
 
 GEM
